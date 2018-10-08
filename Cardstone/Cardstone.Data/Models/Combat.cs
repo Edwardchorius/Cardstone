@@ -1,4 +1,8 @@
-﻿namespace Cardstone.Data.Models
+﻿using System;
+using System.Collections.Generic;
+using System.Text;
+
+namespace Cardstone.Data.Models
 {
     public class Combat
     {

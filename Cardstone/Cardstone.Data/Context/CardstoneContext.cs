@@ -1,4 +1,5 @@
-﻿using Cardstone.Data.Models;
+﻿using Cardstone.Data.Configurations;
+using Cardstone.Data.Models;
 using Microsoft.EntityFrameworkCore;
 
 namespace Cardstone.Data.Context
@@ -14,20 +15,25 @@ namespace Cardstone.Data.Context
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<CardsDecks>()
-                .HasKey(c => new { c.CardId, c.DeckId });
-          
-            modelBuilder.Entity<Player>()
-                .HasMany<Combat>(p => p.WonCombats)
-                .WithOne(c => c.Winner)
-                .HasForeignKey(c => c.WinnerId);
+            modelBuilder.ApplyConfiguration(new CardsDecksConfiguration());
 
-            modelBuilder.Entity<Player>()
-                .HasMany<Combat>(p => p.LostCombats)
-                .WithOne(c => c.Loser)
-                .HasForeignKey(c => c.LooserId);
+            modelBuilder.ApplyConfiguration(new PlayerConfiguration());
+
 
             base.OnModelCreating(modelBuilder);
+        }
+
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        {
+            if (!optionsBuilder.IsConfigured)
+            {
+                optionsBuilder
+                    .UseSqlServer(@"Server=tcp:cardstoneproject.database.windows.net,1433;
+                Initial Catalog = Cardstone; Persist Security Info = False;
+                User ID = TelerikAcademyProject; Password =CardstoneProject1;
+                MultipleActiveResultSets = False; Encrypt = True;
+                TrustServerCertificate = False; Connection Timeout = 30;");
+            }
         }
     }
 }
