@@ -5,7 +5,7 @@ using System.Linq;
 
 namespace Cardstone.CLI.Core
 {
-    public class Engine
+    public class Engine : IEngine
     {
         private readonly IComponentContext autofacContext;
 
@@ -31,6 +31,11 @@ namespace Cardstone.CLI.Core
         private ICommand GetCommand(string name)
         {
             return this.autofacContext.ResolveNamed<ICommand>(name);
+        }
+
+        ICommand IEngine.GetCommand(string name)
+        {
+            throw new NotImplementedException();
         }
     }
 }
