@@ -14,9 +14,9 @@ namespace Cardstone.Data.Models
 
         public int Coins { get; set; }
 
-        public ICollection<Combat> ParticipatedCombats { get; set; }
-
         public ICollection<Combat> WonCombats { get; set; }
+
+        public ICollection<Combat> LostCombats { get; set; }
 
         public ICollection<Purchase> Purchases { get; set; }
     }
