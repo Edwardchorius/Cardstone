@@ -13,6 +13,11 @@ namespace Cardstone.Data.Context
         public DbSet<Player> Players { get; set; }
         public DbSet<Purchase> Purchases { get; set; }
 
+        public CardstoneContext()
+        {
+
+        }
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.ApplyConfiguration(new CardsDecksConfiguration());
