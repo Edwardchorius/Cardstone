@@ -16,16 +16,13 @@ namespace Cardstone.Data.Context
         {
             modelBuilder.Entity<CardsDecks>()
                 .HasKey(c => new { c.CardId, c.DeckId });
+          
 
-            modelBuilder.Entity<CardsDecks>()
-                .HasOne(c => c.Card)
-                .WithMany(cd => cd.CardsDecks)
-                .HasForeignKey(c => c.CardId);
+            modelBuilder.Entity<Player>()
+                .HasMany<Combat>(p => p.WonCombats)
+                .WithOne(c => c.Winner)
+                .HasForeignKey(c => c.WinnerId);
 
-            modelBuilder.Entity<CardsDecks>()
-                .HasOne(d => d.Deck)
-                .WithMany(cd => cd.CardsDecks)
-                .HasForeignKey(d => d.DeckId);
 
             base.OnModelCreating(modelBuilder);
         }
