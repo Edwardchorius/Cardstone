@@ -16,13 +16,16 @@ namespace Cardstone.CLI.Core
 
         public void Run()
         {
-            string[] args = Console.ReadLine().Split(' ');
+            while (true)
+            {
+                string[] args = Console.ReadLine().Split(' ');
 
-            ICommand command = this.GetCommand(args[0]);
+                ICommand command = this.GetCommand(args[0]);
 
-            var parameters = args.Skip(1);
+                var parameters = args.Skip(1);
 
-            command.Execute(parameters);
+                command.Execute(parameters);
+            }
         }
 
         private ICommand GetCommand(string name)
