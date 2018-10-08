@@ -1,4 +1,6 @@
-﻿using Cardstone.CLI.Core;
+﻿using Autofac;
+using Autofac.Core;
+using Cardstone.CLI.Core;
 
 namespace Cardstone.CLI
 {
