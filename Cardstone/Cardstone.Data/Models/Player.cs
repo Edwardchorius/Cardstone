@@ -1,4 +1,6 @@
 ﻿using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Cardstone.Data.Models
 {
@@ -6,6 +8,8 @@ namespace Cardstone.Data.Models
     {
         public int Id { get; set; }
 
+        [Required]
+        [MaxLength(20)]
         public string Username { get; set; }
 
         public int Health { get; set; }
@@ -13,7 +17,8 @@ namespace Cardstone.Data.Models
         public int XP { get; set; }
 
         public int Coins { get; set; }
-
+        
+        
         public int DeckId { get; set; }
 
         public Deck Deck { get; set; }
