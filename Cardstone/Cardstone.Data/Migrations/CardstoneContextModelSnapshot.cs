@@ -97,7 +97,9 @@ namespace Cardstone.Data.Migrations
 
                     b.Property<int>("Health");
 
-                    b.Property<string>("Username");
+                    b.Property<string>("Username")
+                        .IsRequired()
+                        .HasMaxLength(20);
 
                     b.Property<int>("XP");
 

@@ -34,8 +34,8 @@ namespace Cardstone.CLI.Commands
                 WonCombats = new List<Combat>(),
                 LostCombats = new List<Combat>(),
                 Purchases = new List<Purchase>()
+                
             };
-
             this.CardstoneContext.Players.Add(user);
             this.CardstoneContext.SaveChanges();
         }

@@ -7,7 +7,7 @@ using System.Text;
 
 namespace Cardstone.Data.Configurations
 {
-    public class PlayerConfiguration : IEntityTypeConfiguration<Player>
+    internal class PlayerConfiguration : IEntityTypeConfiguration<Player>
     {
         public void Configure(EntityTypeBuilder<Player> builder)
         {
@@ -28,6 +28,10 @@ namespace Cardstone.Data.Configurations
             builder.HasOne<Deck>(d => d.Deck)
                 .WithOne(p => p.Player)
                 .HasForeignKey<Deck>(p => p.PlayerID);
+
+            builder.Property(p => p.Username)
+                 .IsRequired()
+                 .HasMaxLength(20);
         }
     }
 }

@@ -7,7 +7,7 @@ using System.Text;
 
 namespace Cardstone.Data.Configurations
 {
-    public class CardsDecksConfiguration : IEntityTypeConfiguration<CardsDecks>
+    internal class CardsDecksConfiguration : IEntityTypeConfiguration<CardsDecks>
     {
         public void Configure(EntityTypeBuilder<CardsDecks> builder)
         {
