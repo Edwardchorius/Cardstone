@@ -7,6 +7,8 @@ namespace Cardstone.Services.Contracts
 {
     public interface ICardService
     {
-        Card CreateCard(string Name, int Attack, int Price, string Username);
+        Card CreateCard(string name, int attack, int price);
+
+        Card GetCard(string name);
     }
 }
