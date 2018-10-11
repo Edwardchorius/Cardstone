@@ -28,7 +28,6 @@ namespace Cardstone.Data.Configurations
             builder.HasOne<Deck>(d => d.Deck)
                 .WithOne(p => p.Player)
                 .HasForeignKey<Deck>(p => p.PlayerID);
-                
         }
     }
 }

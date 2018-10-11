@@ -24,6 +24,9 @@ namespace Cardstone.Data.Context
 
             modelBuilder.ApplyConfiguration(new PlayerConfiguration());
 
+            modelBuilder.Entity<Player>()
+                .Property(p => p.DeckId)
+                .ValueGeneratedOnAdd();
 
             base.OnModelCreating(modelBuilder);
         }
