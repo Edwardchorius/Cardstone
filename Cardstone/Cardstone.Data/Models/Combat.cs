@@ -17,5 +17,7 @@ namespace Cardstone.Data.Models
         public Player Loser { get; set; }
 
         public int CoinsWin { get; set; }
+
+        public int XpWin { get; set; }
     }
 }

@@ -14,7 +14,7 @@ namespace Cardstone.Services
 
         public CardService(ICardstoneContext context)
         {
-            this.context = context;
+            this.context = context?? throw new ArgumentNullException(nameof(context));
         }
 
         public Card CreateCard(string name, int attack, int price)
