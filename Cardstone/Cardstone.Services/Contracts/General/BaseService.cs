@@ -1,4 +1,5 @@
 ﻿using Cardstone.Data.Context;
+using System;
 using System.Collections.Generic;
 
 namespace Cardstone.Services.Contracts
@@ -7,7 +8,7 @@ namespace Cardstone.Services.Contracts
     {
         public BaseService(ICardstoneContext context)
         {
-            this.Context = context;
+            this.Context = context ?? throw new ArgumentNullException(nameof(context));
         }
 
         public BaseService(ICardstoneContext context, params IService[] services)
@@ -17,6 +18,9 @@ namespace Cardstone.Services.Contracts
 
             foreach (IService service in services)
             {
+                if (service == null)
+                    throw new ArgumentNullException(nameof(service));
+
                 this.Services.Add(service);
             }
         }
