@@ -1,12 +1,11 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 
-namespace Cardstone.Data.Exceptions.CardExceptions
+namespace Cardstone.Data.Exceptions
 {
     public class InvalidAttackException : Exception
     {
-        public InvalidAttackException(string message) : base(message)
+        public InvalidAttackException(string message) 
+            : base(message)
         {
 
         }

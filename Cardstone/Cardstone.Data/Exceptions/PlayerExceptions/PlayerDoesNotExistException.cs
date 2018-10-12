@@ -2,9 +2,9 @@
 
 namespace Cardstone.Data.Exceptions
 {
-    public class InvalidPriceException : Exception
+    public class PlayerDoesNotExistException : Exception
     {
-        public InvalidPriceException(string message) 
+        public PlayerDoesNotExistException(string message) 
             : base(message)
         {
 
