@@ -7,6 +7,6 @@ namespace Cardstone.Services.Contracts
     {
         ICardstoneContext Context { get; }
 
-        ICollection<IService> Services { get; }
+        IDictionary<string, IService> Services { get; }
     }
 }
