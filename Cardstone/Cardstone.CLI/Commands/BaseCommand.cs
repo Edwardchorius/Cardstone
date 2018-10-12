@@ -1,8 +1,6 @@
 ﻿using Cardstone.CLI.Contracts;
 using Cardstone.Data.Context;
-using System;
 using System.Collections.Generic;
-using System.Text;
 
 namespace Cardstone.CLI.Commands
 {
