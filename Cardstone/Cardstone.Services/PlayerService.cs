@@ -9,12 +9,13 @@ using Cardstone.Services.Contracts;
 
 namespace Cardstone.Services
 {
-    public class PlayerService : BaseService, IPlayerService, IService
+    public class PlayerService : IPlayerService, IService
     {
-        public PlayerService(ICardstoneContext context)
-            : base(context)
-        {
+        private ICardstoneContext context;
 
+        public PlayerService(ICardstoneContext context)
+        {
+            this.context = context;
         }
 
         public Player AddPlayer(string username)
@@ -37,8 +38,8 @@ namespace Cardstone.Services
                 Purchases = new List<Purchase>()
             };
 
-            this.Context.Players.Add(player);
-            this.Context.SaveChanges();
+            this.context.Players.Add(player);
+            this.context.SaveChanges();
 
             return player;
         }
@@ -48,7 +49,7 @@ namespace Cardstone.Services
             if (username == null)
                 throw new ArgumentNullException("Username cannot be null");
 
-            Player player = this.Context.Players.SingleOrDefault(p => p.Username == username);
+            Player player = this.context.Players.SingleOrDefault(p => p.Username == username);
 
             if (player == null)
                 throw new PlayerDoesNotExistException("There is no such username in database");
@@ -57,6 +58,6 @@ namespace Cardstone.Services
         }
 
         public IEnumerable<Player> GetPlayers()
-            => this.Context.Players;
+            => this.context.Players;
     }
 }

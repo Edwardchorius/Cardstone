@@ -8,19 +8,20 @@ using Cardstone.Services.Contracts;
 
 namespace Cardstone.Services
 {
-    public class CardService : BaseService, ICardService, IService
+    public class CardService : ICardService, IService
     {
-        public CardService(ICardstoneContext context)
-            : base(context)
-        {
+        private ICardstoneContext context;
 
+        public CardService(ICardstoneContext context)
+        {
+            this.context = context;
         }
 
         
 
         public Card CreateCard(string name, int attack, int price)
         {
-            if (this.Context.Cards.Any(n => n.Name == name))
+            if (this.context.Cards.Any(n => n.Name == name))
                 throw new CardDoesNotExistException($"Card {name} already exists!");
 
             if (name.Length < 2)
@@ -41,8 +42,8 @@ namespace Cardstone.Services
                 Purchases = new List<Purchase>()
             };
 
-            this.Context.Cards.Add(card);
-            this.Context.SaveChanges();
+            this.context.Cards.Add(card);
+            this.context.SaveChanges();
 
             return card;
         }
@@ -52,7 +53,7 @@ namespace Cardstone.Services
             if (name == null)
                 throw new CardDoesNotExistException($"Invalid name!");
 
-            Card card = this.Context.Cards.SingleOrDefault(n => n.Name == name);
+            Card card = this.context.Cards.SingleOrDefault(n => n.Name == name);
 
             if (card == null)
                 throw new CardDoesNotExistException($"Card {name} does not exist!");
