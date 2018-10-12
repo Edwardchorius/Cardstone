@@ -1,11 +1,8 @@
 ﻿using Cardstone.Data.Models;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace Cardstone.Services.Contracts
 {
-    public interface ICardService
+    public interface ICardService : IService
     {
         Card CreateCard(string name, int attack, int price);
 

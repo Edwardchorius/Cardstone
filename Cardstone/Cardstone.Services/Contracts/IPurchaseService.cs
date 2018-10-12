@@ -2,7 +2,7 @@
 
 namespace Cardstone.Services.Contracts
 {
-    public interface IPurchaseService
+    public interface IPurchaseService : IService
     {
         Card PurchaseCard(string userName, string cardName);
     }
