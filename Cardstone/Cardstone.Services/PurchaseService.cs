@@ -7,11 +7,12 @@ using Cardstone.Services.Contracts;
 
 namespace Cardstone.Services
 {
-    public class PurchaseService  :IPurchaseService, IService
+    public class PurchaseService : IPurchaseService, IService
     {
         private ICardstoneContext context;
         private ICardService cardService;
         private IPlayerService playerService;
+
 
         public PurchaseService(ICardstoneContext context,
                                ICardService cardService,
@@ -24,23 +25,16 @@ namespace Cardstone.Services
 
         public Card PurchaseCard(string username, string cardName)
         {
-            Player player = playerService.GetPlayer(username);
-            Card card = cardService.GetCard(cardName);
+           Player player = playerService.GetPlayer(username);
+           Card card = cardService.GetCard(cardName);
 
-            if (player.Coins < card.Price)
-                throw new NotEnoughCoinsException($"Purchase too expensive. The {card.Name} card costs {card.Price}. {player.Username} have {player.Coins}");
+           if (player.Coins < card.Price)
+               throw new NotEnoughCoinsException($"Purchase too expensive. The {card.Name} card costs {card.Price}. {player.Username} have {player.Coins}");
 
-            //Deck deck = player.Deck;
+            var playersCards = new PlayersCards { Card = card, Player = player };
 
-            //CardsDecks cardsDecks = new CardsDecks
-            //{
-            //    CardId = card.Id,
-            //    DeckId = deck.Id,
-            //    Card = card,
-            //    Deck = deck
-            //};
+            this.context.PlayersCards.Update(playersCards);
 
-            //deck.CardsDecks.Add(cardsDecks);
             this.context.SaveChanges();
 
             return card;

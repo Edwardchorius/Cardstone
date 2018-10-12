@@ -15,6 +15,7 @@ namespace Cardstone.CLI.Injector
             builder.RegisterAssemblyTypes(Assembly.GetExecutingAssembly()).AsImplementedInterfaces();
             builder.RegisterType<RegisterPlayerCommand>().Named<ICommand>("registerplayer");
             builder.RegisterType<CreateCardCommand>().Named<ICommand>("createcard");
+            builder.RegisterType<PurchaseCardCommand>().Named<ICommand>("purchasecard");
             builder.RegisterType<Engine>().As<IEngine>().SingleInstance();
             builder.RegisterType<CardstoneContext>().As<ICardstoneContext>();
 
