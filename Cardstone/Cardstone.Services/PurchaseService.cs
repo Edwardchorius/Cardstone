@@ -1,49 +1,34 @@
 ﻿using System;
-using System.Linq;
+
 using Cardstone.Data.Context;
+using Cardstone.Data.Exceptions;
 using Cardstone.Data.Models;
 using Cardstone.Services.Contracts;
 
 namespace Cardstone.Services
 {
-    public class PurchaseService : IPurchaseService
+    public class PurchaseService : BaseService, IPurchaseService, IService
     {
         private ICardstoneContext context;
+        private ICardService cardService;
+        private IPlayerService playerService;
 
-        public PurchaseService(ICardstoneContext carstoneContext)
+        public PurchaseService(ICardstoneContext context,
+                               ICardService cardService,
+                               IPlayerService playerService)
+            : base(context, cardService)
         {
-            this.context = carstoneContext ?? throw new ArgumentNullException(nameof(carstoneContext));
+            this.context = context ?? throw new ArgumentNullException(nameof(context));
+            this.cardService = cardService ?? throw new ArgumentNullException(nameof(cardService));
         }
 
         public Card PurchaseCard(string username, string cardName)
         {
-            if (username == null)
-            {
-
-            }
-
-            if (cardName == null)
-            {
-
-            }
-
-            Player player = context.Players.SingleOrDefault(p => p.Username == username);
-            Card card = context.Cards.SingleOrDefault(c => c.Name == cardName);
-
-            if (player == null)
-            {
-                // UserDoesNotExistException();
-            }
-
-            if (card == null)
-            {
-                // CardDoesNotExistException();
-            }
+            Player player = playerService.GetPlayer(username);
+            Card card = cardService.GetCard(cardName);
 
             if (player.Coins < card.Price)
-            {
-                // Custom exception - "Not enough coins to buy this card. Check money balance");
-            }
+                throw new NotEnoughCoinsException($"Purchase too expensive. The {card.Name} card costs {card.Price}. {player.Username} have {player.Coins}");
 
             Deck deck = player.Deck;
 
@@ -56,6 +41,7 @@ namespace Cardstone.Services
             };
 
             deck.CardsDecks.Add(cardsDecks);
+            this.context.SaveChanges();
 
             return card;
         }

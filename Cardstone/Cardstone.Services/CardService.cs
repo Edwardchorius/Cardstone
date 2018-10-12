@@ -1,45 +1,36 @@
-﻿using Cardstone.Data.Context;
-using Cardstone.Data.Exceptions.CardExceptions;
+﻿using System.Collections.Generic;
+using System.Linq;
+
+using Cardstone.Data.Context;
+using Cardstone.Data.Exceptions;
 using Cardstone.Data.Models;
 using Cardstone.Services.Contracts;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 
 namespace Cardstone.Services
 {
-    public class CardService : ICardService
+    public class CardService : BaseService, ICardService, IService
     {
-        private ICardstoneContext context;
-
         public CardService(ICardstoneContext context)
+            : base(context)
         {
-            this.context = context;
+
         }
 
         public Card CreateCard(string name, int attack, int price)
         {
-            if (this.context.Cards.Any(n => n.Name == name))
-            {
-                throw new InvalidNameException($"Card {name} already exists!");  
-            }
+            if (this.Context.Cards.Any(n => n.Name == name))
+                throw new CardDoesNotExistException($"Card {name} already exists!");
 
             if (name.Length < 2)
-            {
-                throw new InvalidNameException($"Invalid name length!");
-            }
+                throw new CardDoesNotExistException($"Invalid name length!");
 
             if (attack < 0)
-            {
                 throw new InvalidAttackException($"Attack can not be less than zero!");
-            }
 
             if (price < 0)
-            {
                 throw new InvalidPriceException($"Price can not be less than zero!");
-            }
 
-            var card = new Card
+            Card card = new Card
             {
                 Name = name,
                 Attack = attack,
@@ -48,27 +39,21 @@ namespace Cardstone.Services
                 Purchases = new List<Purchase>()
             };
 
-            this.context.Cards.Add(card);
-            this.context.SaveChanges();
+            this.Context.Cards.Add(card);
+            this.Context.SaveChanges();
 
             return card;
         }
 
         public Card GetCard(string name)
         {
-            var cards = this.context.Cards;
-
             if (name == null)
-            {
-                throw new InvalidNameException($"Invalid name!");
-            }
+                throw new CardDoesNotExistException($"Invalid name!");
 
-            Card card = cards.SingleOrDefault(n => n.Name == name);
+            Card card = this.Context.Cards.SingleOrDefault(n => n.Name == name);
 
             if (card == null)
-            {
-                throw new InvalidNameException($"Card {name} does not exist!");
-            }
+                throw new CardDoesNotExistException($"Card {name} does not exist!");
 
             return card;
         }
