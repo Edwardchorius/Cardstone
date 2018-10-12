@@ -5,7 +5,7 @@ using System.Text;
 
 namespace Cardstone.Services.Contracts
 {
-    public interface ICombatService
+    public interface ICombatService : IService
     {
         Combat CreateBattle(string firstPlayer, string secondPlayer, int coinsReward, int xpReward);
     }

@@ -33,6 +33,7 @@ namespace Cardstone.CLI.Commands.CardCommands
             try
             {
                 var addedCard = this.cardService.CreateCard(name, attack, price);
+                
                 Console.WriteLine($"Added card with Id {addedCard.Id}");
             }
             catch (Exception)

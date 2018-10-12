@@ -12,11 +12,9 @@ namespace Cardstone.Data.Models
 
         public int XP { get; set; }
 
-        public int Coins { get; set; }
-               
-        public int DeckId { get; set; }
+        public int Coins { get; set; }           
 
-        public Deck Deck { get; set; }
+        public ICollection<PlayersCards> PlayersCards { get; set; }
 
         public ICollection<Combat> WonCombats { get; set; }
 

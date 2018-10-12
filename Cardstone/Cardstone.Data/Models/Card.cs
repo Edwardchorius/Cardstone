@@ -12,7 +12,7 @@ namespace Cardstone.Data.Models
 
         public int Price { get; set; }
 
-        public ICollection<CardsDecks> CardsDecks { get; set; }
+        public ICollection<PlayersCards> PlayersCards { get; set; }
 
         public ICollection<Purchase> Purchases { get; set; }
     }

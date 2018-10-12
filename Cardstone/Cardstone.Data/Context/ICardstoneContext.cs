@@ -7,10 +7,6 @@ namespace Cardstone.Data.Context
     {
         DbSet<Card> Cards { get; set; }
 
-        DbSet<Deck> Decks { get; set; }
-
-        DbSet<CardsDecks> CardsDecks { get; set; }
-
         DbSet<Combat> Combats { get; set; }
 
         DbSet<Player> Players { get; set; }
