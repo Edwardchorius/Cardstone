@@ -15,7 +15,6 @@ namespace Cardstone.CLI
             builder.RegisterAssemblyTypes(Assembly.GetExecutingAssembly()).AsImplementedInterfaces();
             builder.RegisterType<Engine>().As<IEngine>().SingleInstance();
             builder.RegisterType<CardstoneContext>().As<ICardstoneContext>();
-
             IContainer conteiner = builder.Build();
             IEngine engine = conteiner.Resolve<IEngine>();
 

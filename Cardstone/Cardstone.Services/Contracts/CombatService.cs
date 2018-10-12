@@ -7,7 +7,7 @@ using Cardstone.Data.Models;
 
 namespace Cardstone.Services.Contracts
 {
-    public class CombatService : ICombatService
+    public class CombatService //: ICombatService
     {
         private ICardstoneContext context;
 
@@ -16,24 +16,24 @@ namespace Cardstone.Services.Contracts
             this.context = context ?? throw new ArgumentNullException(nameof(context));
         }
 
-        public Combat CreateBattle(string firstPlayer, string secondPlayer, int coinsReward, int xpReward)
-        {
-            if (firstPlayer == null || secondPlayer== null)
-            {
-                // Custom Exception
-            }
+        //public Combat CreateBattle(string firstPlayer, string secondPlayer, int coinsReward, int xpReward)
+        //{
+        //    if (firstPlayer == null || secondPlayer== null)
+        //    {
+        //        // Custom Exception
+        //    }
 
-            var playerOne = this.context.Players.FirstOrDefault(n => n.Username == firstPlayer);
-            var playerTwo = this.context.Players.FirstOrDefault(n => n.Username == secondPlayer);
+        //    var playerOne = this.context.Players.FirstOrDefault(n => n.Username == firstPlayer);
+        //    var playerTwo = this.context.Players.FirstOrDefault(n => n.Username == secondPlayer);
 
-            if (playerOne == null || playerTwo == null)
-            {
-                // Custom Exception
-            }
+        //    if (playerOne == null || playerTwo == null)
+        //    {
+        //        // Custom Exception
+        //    }
 
             
 
 
-        }
+        //}
     }
 }

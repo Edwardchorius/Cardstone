@@ -1,4 +1,5 @@
 ﻿using Cardstone.CLI.Contracts;
+using Cardstone.Data.Context;
 using Cardstone.Services.Contracts;
 using System;
 using System.Collections.Generic;
@@ -19,7 +20,7 @@ namespace Cardstone.CLI.Commands.CardCommands
         public void Execute(IEnumerable<string> parameters)
         {
             var args = parameters.ToList();
-
+            
             if (args.Count != 3)
             {
                 throw new ArgumentException("Invalid input parameters count passed!");
