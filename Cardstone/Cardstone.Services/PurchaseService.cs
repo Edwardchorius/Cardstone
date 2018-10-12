@@ -7,7 +7,7 @@ using Cardstone.Services.Contracts;
 
 namespace Cardstone.Services
 {
-    public class PurchaseService : BaseService, IPurchaseService, IService
+    public class PurchaseService  :IPurchaseService, IService
     {
         private ICardstoneContext context;
         private ICardService cardService;
@@ -16,8 +16,8 @@ namespace Cardstone.Services
         public PurchaseService(ICardstoneContext context,
                                ICardService cardService,
                                IPlayerService playerService)
-            : base(context, cardService)
         {
+            this.context = context;
             this.cardService = cardService;
             this.playerService = playerService;
         }

@@ -11,7 +11,7 @@ namespace Cardstone.Services.Contracts
     {
         private ICardstoneContext context;
 
-        public CombatService(ICardstoneContext context)
+        public CombatService(ICardstoneContext context) 
         {
             this.context = context ?? throw new ArgumentNullException(nameof(context));
         }
@@ -31,9 +31,7 @@ namespace Cardstone.Services.Contracts
                 // Custom Exception
             }
 
-            
-
-
+            throw new NotImplementedException();
         }
     }
 }
