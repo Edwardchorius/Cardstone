@@ -30,17 +30,17 @@ namespace Cardstone.Services
             if (player.Coins < card.Price)
                 throw new NotEnoughCoinsException($"Purchase too expensive. The {card.Name} card costs {card.Price}. {player.Username} have {player.Coins}");
 
-            Deck deck = player.Deck;
+            //Deck deck = player.Deck;
 
-            CardsDecks cardsDecks = new CardsDecks
-            {
-                CardId = card.Id,
-                DeckId = deck.Id,
-                Card = card,
-                Deck = deck
-            };
+            //CardsDecks cardsDecks = new CardsDecks
+            //{
+            //    CardId = card.Id,
+            //    DeckId = deck.Id,
+            //    Card = card,
+            //    Deck = deck
+            //};
 
-            deck.CardsDecks.Add(cardsDecks);
+            //deck.CardsDecks.Add(cardsDecks);
             this.context.SaveChanges();
 
             return card;

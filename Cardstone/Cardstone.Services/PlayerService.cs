@@ -32,7 +32,7 @@ namespace Cardstone.Services
                 Health = 100,
                 XP = 0,
                 Coins = 150,
-                Deck = new Deck(),
+                PlayersCards = new List<PlayersCards>(),
                 WonCombats = new List<Combat>(),
                 LostCombats = new List<Combat>(),
                 Purchases = new List<Purchase>()

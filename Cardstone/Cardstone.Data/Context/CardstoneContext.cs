@@ -7,8 +7,6 @@ namespace Cardstone.Data.Context
     public class CardstoneContext : DbContext, ICardstoneContext
     {
         public DbSet<Card> Cards { get; set; }
-        public DbSet<Deck> Decks { get; set; }
-        public DbSet<CardsDecks> CardsDecks { get; set; }
         public DbSet<Combat> Combats { get; set; }
         public DbSet<Player> Players { get; set; }
         public DbSet<Purchase> Purchases { get; set; }
@@ -20,10 +18,9 @@ namespace Cardstone.Data.Context
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.ApplyConfiguration(new CardsDecksConfiguration());
-
             modelBuilder.ApplyConfiguration(new PlayerConfiguration());
-           
+
+            modelBuilder.ApplyConfiguration(new PlayersCardsConfiguration());
 
             base.OnModelCreating(modelBuilder);
         }

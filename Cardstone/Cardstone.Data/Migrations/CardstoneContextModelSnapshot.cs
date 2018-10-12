@@ -35,19 +35,6 @@ namespace Cardstone.Data.Migrations
                     b.ToTable("Cards");
                 });
 
-            modelBuilder.Entity("Cardstone.Data.Models.CardsDecks", b =>
-                {
-                    b.Property<int>("CardId");
-
-                    b.Property<int>("DeckId");
-
-                    b.HasKey("CardId", "DeckId");
-
-                    b.HasIndex("DeckId");
-
-                    b.ToTable("CardsDecks");
-                });
-
             modelBuilder.Entity("Cardstone.Data.Models.Combat", b =>
                 {
                     b.Property<int>("Id")
@@ -71,22 +58,6 @@ namespace Cardstone.Data.Migrations
                     b.ToTable("Combats");
                 });
 
-            modelBuilder.Entity("Cardstone.Data.Models.Deck", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<int>("PlayerID");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("PlayerID")
-                        .IsUnique();
-
-                    b.ToTable("Decks");
-                });
-
             modelBuilder.Entity("Cardstone.Data.Models.Player", b =>
                 {
                     b.Property<int>("Id")
@@ -94,8 +65,6 @@ namespace Cardstone.Data.Migrations
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<int>("Coins");
-
-                    b.Property<int>("DeckId");
 
                     b.Property<int>("Health");
 
@@ -108,6 +77,19 @@ namespace Cardstone.Data.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Players");
+                });
+
+            modelBuilder.Entity("Cardstone.Data.Models.PlayersCards", b =>
+                {
+                    b.Property<int>("CardId");
+
+                    b.Property<int>("PlayerId");
+
+                    b.HasKey("CardId", "PlayerId");
+
+                    b.HasIndex("PlayerId");
+
+                    b.ToTable("PlayersCards");
                 });
 
             modelBuilder.Entity("Cardstone.Data.Models.Purchase", b =>
@@ -129,19 +111,6 @@ namespace Cardstone.Data.Migrations
                     b.ToTable("Purchases");
                 });
 
-            modelBuilder.Entity("Cardstone.Data.Models.CardsDecks", b =>
-                {
-                    b.HasOne("Cardstone.Data.Models.Card", "Card")
-                        .WithMany("CardsDecks")
-                        .HasForeignKey("CardId")
-                        .OnDelete(DeleteBehavior.Cascade);
-
-                    b.HasOne("Cardstone.Data.Models.Deck", "Deck")
-                        .WithMany("CardsDecks")
-                        .HasForeignKey("DeckId")
-                        .OnDelete(DeleteBehavior.Cascade);
-                });
-
             modelBuilder.Entity("Cardstone.Data.Models.Combat", b =>
                 {
                     b.HasOne("Cardstone.Data.Models.Player", "Loser")
@@ -155,11 +124,16 @@ namespace Cardstone.Data.Migrations
                         .OnDelete(DeleteBehavior.Restrict);
                 });
 
-            modelBuilder.Entity("Cardstone.Data.Models.Deck", b =>
+            modelBuilder.Entity("Cardstone.Data.Models.PlayersCards", b =>
                 {
+                    b.HasOne("Cardstone.Data.Models.Card", "Card")
+                        .WithMany()
+                        .HasForeignKey("CardId")
+                        .OnDelete(DeleteBehavior.Cascade);
+
                     b.HasOne("Cardstone.Data.Models.Player", "Player")
-                        .WithOne("Deck")
-                        .HasForeignKey("Cardstone.Data.Models.Deck", "PlayerID")
+                        .WithMany()
+                        .HasForeignKey("PlayerId")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 

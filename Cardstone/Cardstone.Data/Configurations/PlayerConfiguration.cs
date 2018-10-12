@@ -9,9 +9,9 @@ namespace Cardstone.Data.Configurations
         public void Configure(EntityTypeBuilder<Player> builder)
         {
             builder.HasMany<Combat>(p => p.WonCombats)
-                .WithOne(c => c.Winner)
-                .HasForeignKey(c => c.WinnerId)
-                .OnDelete(DeleteBehavior.Restrict);
+               .WithOne(c => c.Winner)
+               .HasForeignKey(c => c.WinnerId)
+               .OnDelete(DeleteBehavior.Restrict);
 
             builder.HasMany<Combat>(p => p.LostCombats)
                 .WithOne(c => c.Loser)
@@ -20,11 +20,7 @@ namespace Cardstone.Data.Configurations
 
             builder.HasMany<Purchase>(pch => pch.Purchases)
                 .WithOne(b => b.Buyer)
-                .HasForeignKey(b => b.BuyerId);
-
-            builder.HasOne<Deck>(d => d.Deck)
-                .WithOne(p => p.Player)
-                .HasForeignKey<Deck>(p => p.PlayerID);
+                .HasForeignKey(b => b.BuyerId);                      
 
             builder.Property(p => p.Username)
                  .IsRequired()

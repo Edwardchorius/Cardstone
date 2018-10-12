@@ -17,6 +17,8 @@ namespace Cardstone.Services
             this.context = context;
         }
 
+        
+
         public Card CreateCard(string name, int attack, int price)
         {
             if (this.context.Cards.Any(n => n.Name == name))
@@ -36,7 +38,7 @@ namespace Cardstone.Services
                 Name = name,
                 Attack = attack,
                 Price = price,
-                CardsDecks = new List<CardsDecks>(),
+                PlayersCards = new List<PlayersCards>(),
                 Purchases = new List<Purchase>()
             };
 
