@@ -18,8 +18,8 @@ namespace Cardstone.Services
                                IPlayerService playerService)
             : base(context, cardService)
         {
-            this.context = context ?? throw new ArgumentNullException(nameof(context));
-            this.cardService = cardService ?? throw new ArgumentNullException(nameof(cardService));
+            this.cardService = cardService;
+            this.playerService = playerService;
         }
 
         public Card PurchaseCard(string username, string cardName)

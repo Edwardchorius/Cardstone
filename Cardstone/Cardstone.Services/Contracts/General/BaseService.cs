@@ -1,4 +1,5 @@
 ﻿using Cardstone.Data.Context;
+using System;
 using System.Collections.Generic;
 
 namespace Cardstone.Services.Contracts
@@ -7,22 +8,26 @@ namespace Cardstone.Services.Contracts
     {
         public BaseService(ICardstoneContext context)
         {
-            this.Context = context;
+            this.Context = context ?? throw new ArgumentNullException(nameof(context));
         }
 
         public BaseService(ICardstoneContext context, params IService[] services)
             : this (context)
         {
-            this.Services = new List<IService>();
+            this.Services = new Dictionary<string, IService>();
 
             foreach (IService service in services)
             {
-                this.Services.Add(service);
+                if (service == null)
+                    throw new ArgumentNullException(nameof(service));
+
+                this.Services.Add(service.GetType().BaseType.Name, service);
             }
         }
 
         public ICardstoneContext Context { get; }
 
-        public ICollection<IService> Services { get; }
+        // TODO: Make with reflection
+        public IDictionary<string, IService> Services { get; }
     }
 }
