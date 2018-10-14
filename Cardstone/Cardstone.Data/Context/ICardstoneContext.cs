@@ -11,6 +11,8 @@ namespace Cardstone.Data.Context
 
         DbSet<Player> Players { get; set; }
 
+        DbSet<PlayersCards> PlayersCards { get; set; }
+
         DbSet<Purchase> Purchases { get; set; }
 
         int SaveChanges();

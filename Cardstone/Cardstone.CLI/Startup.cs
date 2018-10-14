@@ -16,6 +16,8 @@ namespace Cardstone.CLI
             builder.RegisterAssemblyModules(Assembly.GetExecutingAssembly());
             builder.RegisterAssemblyTypes(Assembly.GetExecutingAssembly()).AsImplementedInterfaces();
             builder.RegisterType<CardService>().As<ICardService>();
+            builder.RegisterType<PurchaseService>().As<IPurchaseService>();
+            builder.RegisterType<PlayerService>().As<IPlayerService>();
             builder.RegisterType<Engine>().As<IEngine>().SingleInstance();
             builder.RegisterType<CardstoneContext>().As<ICardstoneContext>();
             IContainer conteiner = builder.Build();
