@@ -16,6 +16,13 @@ namespace Cardstone.Data.Context
 
         }
 
+        public CardstoneContext(DbContextOptions<CardstoneContext> options) 
+            : base(options)
+        {
+
+        }
+
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.ApplyConfiguration(new PlayerConfiguration());
