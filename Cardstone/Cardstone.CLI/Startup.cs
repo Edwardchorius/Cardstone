@@ -4,6 +4,7 @@ using Cardstone.CLI.Core;
 using Cardstone.Data.Context;
 using Cardstone.Services;
 using Cardstone.Services.Contracts;
+using Cardstone.Services.Contracts.General;
 using System.Reflection;
 
 namespace Cardstone.CLI
@@ -18,6 +19,8 @@ namespace Cardstone.CLI
             builder.RegisterType<CardService>().As<ICardService>();
             builder.RegisterType<PurchaseService>().As<IPurchaseService>();
             builder.RegisterType<PlayerService>().As<IPlayerService>();
+            builder.RegisterType<CombatService>().As<ICombatService>();
+            builder.RegisterType<PlayersCardsService>().As<IPlayersCardsService>();
             builder.RegisterType<Engine>().As<IEngine>().SingleInstance();
             builder.RegisterType<CardstoneContext>().As<ICardstoneContext>();
             IContainer conteiner = builder.Build();

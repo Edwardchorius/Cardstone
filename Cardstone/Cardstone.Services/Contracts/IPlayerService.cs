@@ -10,5 +10,7 @@ namespace Cardstone.Services.Contracts
         Player GetPlayer(string username);
 
         IEnumerable<Player> GetPlayers();
+
+        IEnumerable<PlayersCards> GetPlayerCards(string username);
     }
 }

@@ -7,5 +7,7 @@ namespace Cardstone.Services.Contracts
         Card CreateCard(string name, int attack, int price);
 
         Card GetCard(string name);
+
+        int Compare(string first, string second, ICardService other);
     }
 }

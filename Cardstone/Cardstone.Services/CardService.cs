@@ -64,5 +64,20 @@ namespace Cardstone.Services
 
             return card;
         }
+
+
+        public int Compare(string first , string second, ICardService other)
+        {
+            if (this.GetCard(first).Attack > other.GetCard(second).Attack)
+            {
+                return -1;
+            }
+            if (this.GetCard(first).Attack == other.GetCard(second).Attack)
+            {
+                return 0;
+            }
+
+            return 1;
+        }
     }
 }

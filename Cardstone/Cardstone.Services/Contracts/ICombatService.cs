@@ -7,6 +7,6 @@ namespace Cardstone.Services.Contracts
 {
     public interface ICombatService : IService
     {
-        Combat CreateBattle(string firstPlayer, string secondPlayer, int coinsReward, int xpReward);
+        void CreateBattle(string firstPlayer, string secondPlayer, int coinsReward, int xpReward);
     }
 }
