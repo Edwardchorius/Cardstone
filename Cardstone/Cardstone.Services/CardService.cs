@@ -1,10 +1,12 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 
 using Cardstone.Data.Context;
 using Cardstone.Data.Exceptions;
 using Cardstone.Data.Models;
 using Cardstone.Services.Contracts;
+using static Cardstone.Data.Utilities.Globals;
 
 namespace Cardstone.Services
 {
@@ -19,17 +21,21 @@ namespace Cardstone.Services
 
         public Card CreateCard(string name, int attack, int price)
         {
-            if (this.context.Cards.Any(n => n.Name == name))
-                throw new CardDoesNotExistException($"Card {name} already exists!");
+            if (name == null)
+                throw new ArgumentNullException($"Card name cannot be null");
 
-            if (name.Length < 2)
-                throw new CardDoesNotExistException($"Invalid name length!");
+            if (this.context.Cards.Any(n => n.Name == name))
+                throw new CardAlreadyExistException($"Card {name} already exists!");
+
+            if (name.Length < MIN_CARD_NAME_LENGTH || name.Length > MAX_CARD_NAME_LENGTH)
+                throw new InvalidNameException(string.Format("Card length is {0}. It must be between {1} and {2}",
+                    name.Length, MIN_CARD_NAME_LENGTH, MAX_CARD_NAME_LENGTH));
 
             if (attack < 0)
-                throw new InvalidAttackException($"Attack can not be less than zero!");
+                throw new InvalidAttackException($"Attack is {attack}. It cannot be negative!");
 
             if (price < 0)
-                throw new InvalidPriceException($"Price can not be less than zero!");
+                throw new InvalidPriceException($"Price is {price}. It cannot be negative!");
 
             Card card = new Card
             {
@@ -49,7 +55,7 @@ namespace Cardstone.Services
         public Card GetCard(string name)
         {
             if (name == null)
-                throw new CardDoesNotExistException($"Invalid name!");
+                throw new ArgumentNullException($"Card name cannot be null");
 
             Card card = this.context.Cards.SingleOrDefault(n => n.Name == name);
 

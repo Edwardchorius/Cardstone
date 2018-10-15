@@ -1,6 +1,4 @@
-﻿using System;
-
-using Cardstone.Data.Context;
+﻿using Cardstone.Data.Context;
 using Cardstone.Data.Exceptions;
 using Cardstone.Data.Models;
 using Cardstone.Services.Contracts;
