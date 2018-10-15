@@ -27,8 +27,8 @@ namespace Cardstone.CLI.Commands.BattleCommads
             int coinsReward = int.Parse(args[2]);
             int xpReward = int.Parse(args[3]);
 
-            _combatService.CreateBattle(playerOne, playerTwo, coinsReward, xpReward);
-            /*try
+
+            try
             {
                 _combatService.CreateBattle(playerOne, playerTwo, coinsReward, xpReward);
             }
@@ -36,7 +36,7 @@ namespace Cardstone.CLI.Commands.BattleCommads
             {
                 // Custom Exception
             }
-            */
+            
         }
     }
 }

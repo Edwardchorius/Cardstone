@@ -93,16 +93,14 @@ namespace Cardstone.Services.Contracts
             this._context.SaveChanges();
         }
 
-        // TO DO - change logic for battlecard
+
+
         private Card BattleCard(Player player)
         {
-            Random rnd = new Random();
-
-            var playerCards = player.PlayersCards;
-
-            int cardId = rnd.Next(1, playerCards.Count);
-
-            var card = this._playersCardsService.CardByCardId(cardId);
+            var playerCards = this._playerService.GetPlayerCards(player.Username);
+                      
+            var cardRandom = playerCards.OrderBy(x => Guid.NewGuid()).FirstOrDefault();
+            var card = this._playersCardsService.CardByCardId(cardRandom.CardId);
 
             return card;
         }
