@@ -1,6 +1,9 @@
 ﻿using Cardstone.Data.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
+using System;
+using System.Collections.Generic;
+using System.Text;
 
 namespace Cardstone.Data.Configurations
 {
@@ -20,7 +23,7 @@ namespace Cardstone.Data.Configurations
 
             builder.HasMany<Purchase>(pch => pch.Purchases)
                 .WithOne(b => b.Buyer)
-                .HasForeignKey(b => b.BuyerId);                      
+                .HasForeignKey(b => b.BuyerId);
 
             builder.Property(p => p.Username)
                  .IsRequired()

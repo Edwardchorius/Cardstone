@@ -11,7 +11,7 @@ namespace Cardstone.Services
 {
     public class PlayerService : IPlayerService, IService
     {
-        private ICardstoneContext context;
+        private ICardstoneContext context; //context 2
 
         public PlayerService(ICardstoneContext context)
         {
@@ -55,6 +55,13 @@ namespace Cardstone.Services
                 throw new PlayerDoesNotExistException("There is no such username in database");
 
             return player;
+        }
+
+        public IEnumerable<PlayersCards> GetPlayerCards(string username)
+        {
+            var cards = this.context.PlayersCards.Where(k => k.Player.Username == username).ToList();
+
+            return cards;
         }
 
         public IEnumerable<Player> GetPlayers()

@@ -15,15 +15,17 @@ namespace Cardstone.CLI.Commands
         public RegisterPlayerCommand(IPlayerService playerService) 
             
         {
-            IPlayerService _playerService = playerService;
+            this._playerService = playerService;
         }
 
         public void Execute(IEnumerable<string> parameters)
         {
             var args = parameters.ToList();
 
+            var playerName = args[0];
+
             if (this._playerService.GetPlayers()
-                .Any(u => u.Username == args[0]))
+                .Any(u => u.Username == playerName))
             {
                 throw new Exception("User already exists!");
             }

@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 
 using Cardstone.Data.Context;
@@ -59,6 +60,21 @@ namespace Cardstone.Services
                 throw new CardDoesNotExistException($"Card {name} does not exist!");
 
             return card;
+        }
+
+
+        public int Compare(string first , string second, ICardService other)
+        {
+            if (this.GetCard(first).Attack > other.GetCard(second).Attack)
+            {
+                return -1;
+            }
+            if (this.GetCard(first).Attack == other.GetCard(second).Attack)
+            {
+                return 0;
+            }
+
+            return 1;
         }
     }
 }

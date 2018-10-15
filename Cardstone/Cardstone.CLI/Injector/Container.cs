@@ -1,5 +1,6 @@
 ﻿using Autofac;
 using Cardstone.CLI.Commands;
+using Cardstone.CLI.Commands.BattleCommads;
 using Cardstone.CLI.Commands.CardCommands;
 using Cardstone.CLI.Contracts;
 using Cardstone.CLI.Core;
@@ -16,6 +17,7 @@ namespace Cardstone.CLI.Injector
             builder.RegisterType<RegisterPlayerCommand>().Named<ICommand>("registerplayer");
             builder.RegisterType<CreateCardCommand>().Named<ICommand>("createcard");
             builder.RegisterType<PurchaseCardCommand>().Named<ICommand>("purchasecard");
+            builder.RegisterType<CommenceBattleCommand>().Named<ICommand>("commencebattle");
             builder.RegisterType<Engine>().As<IEngine>().SingleInstance();
             builder.RegisterType<CardstoneContext>().As<ICardstoneContext>();
 

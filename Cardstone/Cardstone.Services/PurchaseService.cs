@@ -32,12 +32,25 @@ namespace Cardstone.Services
                throw new NotEnoughCoinsException($"Purchase too expensive. The {card.Name} card costs {card.Price}. {player.Username} have {player.Coins}");
 
             var playersCards = new PlayersCards { Card = card, Player = player };
+            var purchase = new Purchase
+            {
+                Buyer = player,
+                Card = card
+            };
+
+            BalancePlayerBudget(this.playerService.GetPlayer(username), card.Price);
 
             this.context.PlayersCards.Update(playersCards);
+            this.context.Purchases.Update(purchase);
 
             this.context.SaveChanges();
 
             return card;
+        }
+
+        private void BalancePlayerBudget(Player player, int price)
+        {
+            this.playerService.GetPlayer(player.Username).Coins -= price;
         }
     }
 }
