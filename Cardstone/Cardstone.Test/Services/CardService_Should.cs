@@ -32,7 +32,12 @@ namespace Cardstone.Test.Services
             using (var assertContext = new CardstoneContext(contextOptions))
             {
                 Assert.IsTrue(assertContext.Cards.Count() == 1);
-                Assert.IsTrue(assertContext.Cards.Contains(card));
+
+                Card cardInDatabase = assertContext.Cards.First();
+
+                Assert.AreEqual(card.Name, cardInDatabase.Name);
+                Assert.AreEqual(card.Attack, cardInDatabase.Attack);
+                Assert.AreEqual(card.Price, cardInDatabase.Price);
             }
         }
     }
