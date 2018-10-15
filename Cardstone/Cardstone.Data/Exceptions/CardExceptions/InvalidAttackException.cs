@@ -2,7 +2,7 @@
 
 namespace Cardstone.Data.Exceptions
 {
-    public class InvalidAttackException : Exception
+    public class InvalidAttackException : CardException
     {
         public InvalidAttackException(string message) 
             : base(message)

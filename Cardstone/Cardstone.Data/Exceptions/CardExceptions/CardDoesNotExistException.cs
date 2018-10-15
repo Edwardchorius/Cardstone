@@ -2,7 +2,7 @@
 
 namespace Cardstone.Data.Exceptions
 {
-    public class CardDoesNotExistException : Exception
+    public class CardDoesNotExistException : CardException
     {
         public CardDoesNotExistException(string message) 
             : base(message)
