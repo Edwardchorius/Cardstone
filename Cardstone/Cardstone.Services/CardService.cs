@@ -18,8 +18,6 @@ namespace Cardstone.Services
             this.context = context;
         }
 
-        
-
         public Card CreateCard(string name, int attack, int price)
         {
             if (this.context.Cards.Any(n => n.Name == name))
