@@ -1,0 +1,86 @@
+A
+Alexander
+Angry Ewe
+Angry Mountain Goat
+Angry Ram
+B
+Bandit
+Banshee
+C
+Cat
+Centaur Grappler
+Centaur Hunter
+Cerberus
+Cernian Hind
+Charybdis
+Chimera
+Circe
+Cutthroat
+Cyclops Herder
+Cyclops Warrior
+D
+Deino
+Dish and Spoon
+Dryad
+E
+Enchanted Eagle
+Enchanted Hound
+Enchanted Lion
+Enchanted Ram
+E cont.
+Enchanted Scorpion
+Enchanted Serpent
+Enyo
+Erymanthian Boar
+F
+Fiddle
+Firebreather
+G
+Greater Basilisk
+Griffon
+H
+Harpy
+Harpy Witch
+Hydra
+K
+Kraken
+L
+Lesser Basilisk
+Limniad
+M
+Manes
+Manticore
+Medusa
+Minotaur
+Mysterious Assassin
+N
+Naiad
+Nemean Lion
+Nessus
+O
+Orthrus
+P
+Pemphredo
+P cont.
+Phantom
+Polydamas
+Polyphemus
+S
+Satyr
+Scylla
+Sea Elemental
+Sea Serpent
+Sea Witch
+Shade
+Siren
+Snake Charmer
+Space Cow
+Specter
+Sword Swallower
+T
+Thief
+Trojan Captain
+Trojan Spearman
+Trojan Warrior
+W
+War Hound
