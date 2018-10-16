@@ -1,5 +1,6 @@
 ﻿using Cardstone.CLI.Contracts;
 using Cardstone.Data.Context;
+using Cardstone.Data.Exceptions;
 using Cardstone.Services.Contracts;
 using System;
 using System.Collections.Generic;
@@ -36,9 +37,17 @@ namespace Cardstone.CLI.Commands.CardCommands
                 
                 Console.WriteLine($"Added card with Id {addedCard.Id}");
             }
-            catch (Exception)
+            catch (CardAlreadyExistException ex)
             {
-                // Custom Exception
+                throw new CardAlreadyExistException(ex.Message);
+            }
+            catch(CardDoesNotExistException ex)
+            {
+                throw new CardDoesNotExistException(ex.Message);
+            }
+            catch(Exception ex)
+            {
+                throw new CardException(ex.Message);
             }
         }
     }

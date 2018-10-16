@@ -64,6 +64,18 @@ namespace Cardstone.Services
             return cards;
         }
 
+        public void CoinReward(Player player, int coins)
+        {
+            var playerToWin = this.context.Players.Find(player.Id);
+            playerToWin.Coins += coins;
+        }
+
+        public void XpReward(Player player, int xp)
+        {
+            var playerToWin = this.context.Players.Find(player.Id);
+            playerToWin.XP += xp;
+        }
+
         public IEnumerable<Player> GetPlayers()
             => this.context.Players;
     }

@@ -66,10 +66,10 @@ namespace Cardstone.Services.Contracts
                 };
                 //Adding combat
                 this._context.Combats.Add(combat);
-                
+
                 //Update players statuses
-                playerOne.XP += xpReward;
-                playerOne.Coins += coinsReward;
+                this._playerService.CoinReward(playerOne, coinsReward);
+                this._playerService.XpReward(playerOne, xpReward);
                 this._context.Players.Update(playerOne);
             }
             else if (this._cardService.Compare(firstPlayerCard.Name, secondPlayerCard.Name, _other_cardService) == 1)
@@ -85,8 +85,8 @@ namespace Cardstone.Services.Contracts
                 this._context.Combats.Add(combat);
 
                 //Update players statuses
-                playerTwo.XP += xpReward;
-                playerTwo.Coins += coinsReward;
+                this._playerService.CoinReward(playerTwo, coinsReward);
+                this._playerService.XpReward(playerTwo, xpReward);
                 this._context.Players.Update(playerTwo);
             }
 

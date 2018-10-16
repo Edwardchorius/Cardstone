@@ -12,5 +12,9 @@ namespace Cardstone.Services.Contracts
         IEnumerable<Player> GetPlayers();
 
         IEnumerable<PlayersCards> GetPlayerCards(string username);
+
+        void CoinReward(Player player, int coins);
+
+        void XpReward(Player player, int xp);
     }
 }

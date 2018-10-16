@@ -1,4 +1,5 @@
 ﻿using Cardstone.CLI.Contracts;
+using Cardstone.Data.Exceptions.BattleExceptions;
 using Cardstone.Services.Contracts;
 using System;
 using System.Collections.Generic;
@@ -32,9 +33,9 @@ namespace Cardstone.CLI.Commands.BattleCommads
             {
                 _combatService.CreateBattle(playerOne, playerTwo, coinsReward, xpReward);
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                // Custom Exception
+                throw new InvalidBattleException(ex.Message);
             }
             
         }
