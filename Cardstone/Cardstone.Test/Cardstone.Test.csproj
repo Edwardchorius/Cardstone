@@ -19,4 +19,8 @@
     <ProjectReference Include="..\Cardstone.Services\Cardstone.Services.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Services\PurchaseServiceTest\" />
+  </ItemGroup>
+
 </Project>

@@ -32,12 +32,14 @@ namespace Cardstone.CLI.Commands.BattleCommads
             try
             {
                 _combatService.CreateBattle(playerOne, playerTwo, coinsReward, xpReward);
+                
             }
             catch (Exception ex)
             {
+                logger.AddLog(ex.Message);
                 throw new InvalidBattleException(ex.Message);
             }
-            
+            logger.AddLog("Battle commenced successfully!");
         }
     }
 }

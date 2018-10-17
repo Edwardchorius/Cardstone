@@ -25,7 +25,7 @@ namespace Cardstone.Services.Contracts
             this._cardService = cardService;
             this._playersCardsService = playersCardsService;
             this._other_cardService = other_cardService;
-            this._context = context; // context 1
+            this._context = context;// context 1
         }
 
         public void CreateBattle(string firstPlayer, string secondPlayer, int coinsReward, int xpReward)
