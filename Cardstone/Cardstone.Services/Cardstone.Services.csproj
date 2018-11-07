@@ -1,11 +1,12 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>netcoreapp2.1</TargetFramework>
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Cardstone.Data\Cardstone.Data.csproj" />
+    <ProjectReference Include="..\Cardstone.Data.Models\Cardstone.Data.Models.csproj" />
+    <ProjectReference Include="..\Cardstone.Data\Cardstone.Database.csproj" />
   </ItemGroup>
 
 </Project>

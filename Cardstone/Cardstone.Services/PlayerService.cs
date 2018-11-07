@@ -1,21 +1,21 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-
-using Cardstone.Data.Context;
+using Cardstone.Data.Data;
 using Cardstone.Data.Exceptions;
 using Cardstone.Data.Models;
 using Cardstone.Services.Contracts;
+
 
 namespace Cardstone.Services
 {
     public class PlayerService : IPlayerService, IService
     {
-        private ICardstoneContext context; //context 2
+        private readonly IApplicationDbContext _context;
 
-        public PlayerService(ICardstoneContext context)
+        public PlayerService(IApplicationDbContext context)
         {
-            this.context = context;
+            this._context = context;
         }
 
         public Player AddPlayer(string username)
@@ -38,18 +38,18 @@ namespace Cardstone.Services
                 Purchases = new List<Purchase>()
             };
 
-            this.context.Players.Add(player);
-            this.context.SaveChanges();
+            this._context.Players.Add(player);
+            this._context.SaveChanges();
 
             return player;
         }
 
-        public Player GetPlayer(string username)
+        public Player GetPlayer(string playerId)
         {
-            if (username == null)
+            if (playerId == null)
                 throw new ArgumentNullException("Username cannot be null");
 
-            Player player = this.context.Players.SingleOrDefault(p => p.Username == username);
+            Player player = this._context.Players.Find(playerId);
 
             if (player == null)
                 throw new PlayerDoesNotExistException("There is no such username in database");
@@ -59,24 +59,24 @@ namespace Cardstone.Services
 
         public IEnumerable<PlayersCards> GetPlayerCards(string username)
         {
-            var cards = this.context.PlayersCards.Where(k => k.Player.Username == username).ToList();
+            var cards = this._context.PlayersCards.Where(k => k.Player.Username == username).ToList();
 
             return cards;
         }
 
-        public void CoinReward(Player player, int coins)
+        public void CoinReward(string playerId, int coins)
         {
-            var playerToWin = this.context.Players.Find(player.Id);
+            var playerToWin = this._context.Players.Find(playerId);
             playerToWin.Coins += coins;
         }
 
-        public void XpReward(Player player, int xp)
+        public void XpReward(string playerId, int xp)
         {
-            var playerToWin = this.context.Players.Find(player.Id);
+            var playerToWin = this._context.Players.Find(playerId);
             playerToWin.XP += xp;
         }
 
         public IEnumerable<Player> GetPlayers()
-            => this.context.Players;
+            => this._context.Players;
     }
 }

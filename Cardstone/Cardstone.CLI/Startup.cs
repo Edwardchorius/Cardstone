@@ -1,7 +1,6 @@
 ﻿using Autofac;
 using Cardstone.CLI.Contracts;
 using Cardstone.CLI.Core;
-using Cardstone.Data.Context;
 using Cardstone.Services;
 using Cardstone.Services.Contracts;
 using Cardstone.Services.Contracts.General;
@@ -22,7 +21,7 @@ namespace Cardstone.CLI
             builder.RegisterType<CombatService>().As<ICombatService>();
             builder.RegisterType<PlayersCardsService>().As<IPlayersCardsService>();
             builder.RegisterType<Engine>().As<IEngine>().SingleInstance();
-            builder.RegisterType<CardstoneContext>().As<ICardstoneContext>();
+            builder.RegisterType<ApplicationDbContext>().As<ICardstoneContext>();
             IContainer conteiner = builder.Build();
             IEngine engine = conteiner.Resolve<IEngine>();
 

@@ -7,14 +7,14 @@ namespace Cardstone.Services.Contracts
     {
         Player AddPlayer(string username);
 
-        Player GetPlayer(string username);
+        Player GetPlayer(string playerId);
 
         IEnumerable<Player> GetPlayers();
 
         IEnumerable<PlayersCards> GetPlayerCards(string username);
 
-        void CoinReward(Player player, int coins);
+        void CoinReward(string playerId, int coins);
 
-        void XpReward(Player player, int xp);
+        void XpReward(string playerId, int xp);
     }
 }
