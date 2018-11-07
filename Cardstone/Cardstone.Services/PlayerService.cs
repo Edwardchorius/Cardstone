@@ -28,7 +28,7 @@ namespace Cardstone.Services
 
             Player player = new Player
             {
-                Username = username,
+                UserName = username,
                 Health = 100,
                 XP = 0,
                 Coins = 150,
@@ -59,7 +59,7 @@ namespace Cardstone.Services
 
         public IEnumerable<PlayersCards> GetPlayerCards(string username)
         {
-            var cards = this._context.PlayersCards.Where(k => k.Player.Username == username).ToList();
+            var cards = this._context.PlayersCards.Where(k => k.Player.UserName == username).ToList();
 
             return cards;
         }

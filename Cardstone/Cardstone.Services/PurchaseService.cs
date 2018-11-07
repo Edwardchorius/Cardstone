@@ -27,7 +27,7 @@ namespace Cardstone.Services
            Card card = cardService.GetCard(cardName);
 
            if (player.Coins < card.Price)
-               throw new NotEnoughCoinsException($"Purchase too expensive. The {card.Name} card costs {card.Price}. {player.Username} have {player.Coins}");
+               throw new NotEnoughCoinsException($"Purchase too expensive. The {card.Name} card costs {card.Price}. {player.UserName} have {player.Coins}");
 
             var playersCards = new PlayersCards { Card = card, Player = player };
             var purchase = new Purchase
@@ -48,7 +48,7 @@ namespace Cardstone.Services
 
         private void BalancePlayerBudget(Player player, int price)
         {
-            this.playerService.GetPlayer(player.Username).Coins -= price;
+            this.playerService.GetPlayer(player.UserName).Coins -= price;
         }
     }
 }

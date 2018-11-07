@@ -25,7 +25,7 @@ namespace Cardstone.Data.Configurations
                 .WithOne(b => b.Buyer)
                 .HasForeignKey(b => b.BuyerId);
 
-            builder.Property(p => p.Username)
+            builder.Property(p => p.UserName)
                  .IsRequired()
                  .HasMaxLength(20);
         }

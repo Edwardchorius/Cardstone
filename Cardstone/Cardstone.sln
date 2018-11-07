@@ -13,7 +13,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Cardstone.Test", "Cardstone
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Cardstone.Data.Models", "Cardstone.Data.Models\Cardstone.Data.Models.csproj", "{410641DC-B1FA-49AE-A553-76AD7B933D66}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Cardstone.Web", "Cardstone.Web\Cardstone.Web.csproj", "{80C241CE-AA05-4682-8393-F3C4E3F85046}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Cardstone.Web", "Cardstone.Web\Cardstone.Web.csproj", "{80C241CE-AA05-4682-8393-F3C4E3F85046}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

@@ -35,13 +35,13 @@ namespace Cardstone.Services.Contracts
             var playerOne = this._playerService.GetPlayer(firstPlayer);
             var playerTwo = this._playerService.GetPlayer(secondPlayer);
 
-            var playerOneCards = this._playerService.GetPlayerCards(playerOne.Username).ToList();
-            var playerTwoCards = this._playerService.GetPlayerCards(playerTwo.Username).ToList();
+            var playerOneCards = this._playerService.GetPlayerCards(playerOne.UserName).ToList();
+            var playerTwoCards = this._playerService.GetPlayerCards(playerTwo.UserName).ToList();
 
             playerOne.PlayersCards = playerOneCards;
             playerTwo.PlayersCards = playerTwoCards;
 
-            if (playerOne.Username == null || playerTwo.Username == null)
+            if (playerOne.UserName == null || playerTwo.UserName == null)
             {
                 throw new ArgumentNullException("Invalid player!");
             }
@@ -55,8 +55,8 @@ namespace Cardstone.Services.Contracts
             {
                 combat = new Combat
                 {
-                    WinnerId = playerOne.Username,
-                    LooserId = playerTwo.Username,
+                    WinnerId = playerOne.UserName,
+                    LooserId = playerTwo.UserName,
                     CoinsWin = coinsReward,
                     XpWin = xpReward
                 };
@@ -64,16 +64,16 @@ namespace Cardstone.Services.Contracts
                 this._context.Combats.Add(combat);
 
                 //Update players statuses
-                this._playerService.CoinReward(playerOne.Username, coinsReward);
-                this._playerService.XpReward(playerOne.Username, xpReward);
+                this._playerService.CoinReward(playerOne.UserName, coinsReward);
+                this._playerService.XpReward(playerOne.UserName, xpReward);
                 this._context.Players.Update(playerOne);
             }
             else if (this._cardService.CompareCardAttack(firstPlayerCard.Name, secondPlayerCard.Name) == 1)
             {
                 combat = new Combat
                 { 
-                    WinnerId = playerOne.Username,    
-                    LooserId = playerTwo.Username,
+                    WinnerId = playerOne.UserName,    
+                    LooserId = playerTwo.UserName,
                     CoinsWin = coinsReward,
                     XpWin = xpReward
                 };
@@ -81,8 +81,8 @@ namespace Cardstone.Services.Contracts
                 this._context.Combats.Add(combat);
 
                 //Update players statuses
-                this._playerService.CoinReward(playerTwo.Username, coinsReward);
-                this._playerService.XpReward(playerTwo.Username, xpReward);
+                this._playerService.CoinReward(playerTwo.UserName, coinsReward);
+                this._playerService.XpReward(playerTwo.UserName, xpReward);
                 this._context.Players.Update(playerTwo);
             }
              
@@ -93,7 +93,7 @@ namespace Cardstone.Services.Contracts
 
         private Card BattleCard(Player player)
         {
-            var playerCards = this._playerService.GetPlayerCards(player.Username);
+            var playerCards = this._playerService.GetPlayerCards(player.UserName);
                       
             var cardRandom = playerCards.OrderBy(x => Guid.NewGuid()).FirstOrDefault();
             var card = this._playersCardsService.CardByCardId(cardRandom.CardId);

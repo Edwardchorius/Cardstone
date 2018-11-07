@@ -48,7 +48,9 @@ namespace Cardstone.Web
         private void RegisterData(IServiceCollection services)
         {
             services.AddDbContext<CardstoneContext>(options =>
-            options.UseSqlServer("DefaultConnection"));
+            {
+                options.UseSqlServer(this.Configuration.GetConnectionString("DefaultConnection"));
+            });
         }
 
 

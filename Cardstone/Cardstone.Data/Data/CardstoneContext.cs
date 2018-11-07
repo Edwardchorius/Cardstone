@@ -13,15 +13,16 @@ using System.Text;
 
 namespace Cardstone.Database.Data
 {
-    public class CardstoneContext : IdentityDbContext<Player>, IDesignTimeDbContextFactory<CardstoneContext>
+    public class CardstoneContext : IdentityDbContext<Player>
     {
-        public CardstoneContext()
+
+        public CardstoneContext(DbContextOptions<CardstoneContext> options)
+            : base(options)
         {
 
         }
 
-        public CardstoneContext(DbContextOptions<CardstoneContext> options)
-            : base(options)
+        public CardstoneContext()
         {
 
         }
@@ -86,17 +87,9 @@ namespace Cardstone.Database.Data
             modelBuilder.ApplyConfiguration(new PlayersCardsConfiguration());
 
             modelBuilder.Entity<IdentityRole>()
-                .HasData(new IdentityRole { Name = "Admin" });
+               .HasData(new IdentityRole { Name = "Admin" });
 
             base.OnModelCreating(modelBuilder);
-        }
-
-        public CardstoneContext CreateDbContext(string[] args)
-        {
-            var optionsBuilder = new DbContextOptionsBuilder<CardstoneContext>();
-            optionsBuilder.UseSqlServer("DefaultConnection");
-
-            return new CardstoneContext(optionsBuilder.Options);
         }
     }
 }

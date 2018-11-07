@@ -9,8 +9,6 @@ namespace Cardstone.Data.Models
 {
     public class Player : IdentityUser,IAuditable, IDeletable
     {
-        public string Username { get; set; }
-
         public string AvatarImageName { get; set; }
 
         public int Health { get; set; }
