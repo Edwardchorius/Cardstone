@@ -23,8 +23,8 @@ namespace Cardstone.Services
             if (username == null)
                 throw new ArgumentNullException("Username cannot be null");
 
-            if (username == null)
-                throw new PlayerDoesNotExistException("There is no such username in database");
+            //if (username == null)
+            //    throw new PlayerDoesNotExistException("There is no such username in database");
 
             Player player = new Player
             {

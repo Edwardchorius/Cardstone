@@ -29,7 +29,7 @@ namespace Cardstone.Test.Services.PlayerServiceTest
             playerMock.GetPlayer(invalidUser));
         }
 
-        [TestMethod]
+        //[TestMethod]
         [DataRow("Blitzkrank")]
         [DataRow("Steven")]
         [DataRow("Edo")]
@@ -39,8 +39,6 @@ namespace Cardstone.Test.Services.PlayerServiceTest
             var contextOptions = new DbContextOptionsBuilder<CardstoneContext>()
                 .UseInMemoryDatabase(databaseName: "Should_ReturnPlayer_WhenPassedValidUsername")
                 .Options;
-
-
 
             //Assert
             using (var assertContext = new CardstoneContext(contextOptions))

@@ -66,7 +66,7 @@ namespace Cardstone.Services
         }
 
 
-        public int Compare(string first , string second, ICardService other)
+        public int Compare(string first, string second, ICardService other)
         {
             if (this.GetCard(first).Attack > other.GetCard(second).Attack)
             {

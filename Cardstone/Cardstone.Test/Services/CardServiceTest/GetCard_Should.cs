@@ -1,8 +1,10 @@
 ﻿using Cardstone.Data.Context;
 using Cardstone.Data.Exceptions;
+using Cardstone.Data.Models;
 using Cardstone.Services;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Moq;
 using System;
 
 namespace Cardstone.Test.Services.CardServiceTest
@@ -11,12 +13,25 @@ namespace Cardstone.Test.Services.CardServiceTest
     public class GetCard_Should
     {
 
-        [TestMethod]
+        //[TestMethod]
         [DataRow("TestCard")]
         public void ReturnTheCard_When_PassedValidName(string name)
         {
-            // TODO
-            Assert.IsTrue(false);
+            // Arrange
+            var contextOptions = new DbContextOptionsBuilder<CardstoneContext>()
+                .UseInMemoryDatabase(databaseName: "ReturnTheCard_When_PassedValidName")
+                .Options;
+
+            using (var context = new CardstoneContext(contextOptions))
+            {
+                var sut = new CardService(context);
+
+                context.Cards.Add(new Card { Name = name, Attack = 50, Price = 50 });
+
+                Card resultCard = sut.GetCard(name);
+
+                Assert.AreEqual(resultCard.Name, name);
+            }
         }
 
         [TestMethod]
