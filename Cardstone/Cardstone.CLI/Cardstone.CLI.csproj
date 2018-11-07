@@ -14,7 +14,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Cardstone.Data\Cardstone.Data.csproj" />
+    <ProjectReference Include="..\Cardstone.Data\Cardstone.Database.csproj" />
     <ProjectReference Include="..\Cardstone.Services\Cardstone.Services.csproj" />
   </ItemGroup>
 

@@ -1,8 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-
-using Cardstone.Data.Context;
+using Cardstone.Data.Data;
 using Cardstone.Data.Exceptions;
 using Cardstone.Data.Models;
 using Cardstone.Services.Contracts;
@@ -12,11 +11,11 @@ namespace Cardstone.Services
 {
     public class CardService : ICardService, IService
     {
-        private ICardstoneContext context;
+        private readonly IApplicationDbContext _context;
 
-        public CardService(ICardstoneContext context)
+        public CardService(IApplicationDbContext context)
         {
-            this.context = context;
+            this._context = context;
         }
 
         public Card CreateCard(string name, int attack, int price)
@@ -24,7 +23,7 @@ namespace Cardstone.Services
             if (name == null)
                 throw new ArgumentNullException($"Card name cannot be null");
 
-            if (this.context.Cards.Any(n => n.Name == name))
+            if (this._context.Cards.Any(n => n.Name == name))
                 throw new CardAlreadyExistException($"Card {name} already exists!");
 
             if (name.Length < MIN_CARD_NAME_LENGTH || name.Length > MAX_CARD_NAME_LENGTH)
@@ -46,8 +45,8 @@ namespace Cardstone.Services
                 Purchases = new List<Purchase>()
             };
 
-            this.context.Cards.Add(card);
-            this.context.SaveChanges();
+            this._context.Cards.Add(card);
+            this._context.SaveChanges();
 
             return card;
         }
@@ -57,7 +56,7 @@ namespace Cardstone.Services
             if (name == null)
                 throw new ArgumentNullException($"Card name cannot be null");
 
-            Card card = this.context.Cards.SingleOrDefault(n => n.Name == name);
+            Card card = this._context.Cards.SingleOrDefault(n => n.Name == name);
 
             if (card == null)
                 throw new CardDoesNotExistException($"Card {name} does not exist!");
@@ -66,13 +65,16 @@ namespace Cardstone.Services
         }
 
 
-        public int Compare(string first , string second, ICardService other)
+        public int CompareCardAttack(string first , string second)
         {
-            if (this.GetCard(first).Attack > other.GetCard(second).Attack)
+            var firstCard = this.GetCard(first).Attack;
+            var secondCard = this.GetCard(second).Attack;
+
+            if (firstCard > secondCard)
             {
                 return -1;
             }
-            if (this.GetCard(first).Attack == other.GetCard(second).Attack)
+            if (firstCard == secondCard)
             {
                 return 0;
             }

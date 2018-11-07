@@ -3,13 +3,17 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.28010.2003
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Cardstone.Data", "Cardstone.Data\Cardstone.Data.csproj", "{7618A713-430B-43BC-BF5B-7ECF3C1B1D2E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Cardstone.Database", "Cardstone.Data\Cardstone.Database.csproj", "{7618A713-430B-43BC-BF5B-7ECF3C1B1D2E}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Cardstone.CLI", "Cardstone.CLI\Cardstone.CLI.csproj", "{BC95899D-5768-47F4-8341-04E319611D1A}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Cardstone.Services", "Cardstone.Services\Cardstone.Services.csproj", "{50A7BA87-D443-4ED1-80A0-0568B7A0D6F9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Cardstone.Test", "Cardstone.Test\Cardstone.Test.csproj", "{DAF213E5-0BD4-47CD-B64A-B271AEEFBDE2}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Cardstone.Test", "Cardstone.Test\Cardstone.Test.csproj", "{DAF213E5-0BD4-47CD-B64A-B271AEEFBDE2}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Cardstone.Data.Models", "Cardstone.Data.Models\Cardstone.Data.Models.csproj", "{410641DC-B1FA-49AE-A553-76AD7B933D66}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Cardstone.Web", "Cardstone.Web\Cardstone.Web.csproj", "{80C241CE-AA05-4682-8393-F3C4E3F85046}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -22,7 +26,6 @@ Global
 		{7618A713-430B-43BC-BF5B-7ECF3C1B1D2E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7618A713-430B-43BC-BF5B-7ECF3C1B1D2E}.Release|Any CPU.Build.0 = Release|Any CPU
 		{BC95899D-5768-47F4-8341-04E319611D1A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{BC95899D-5768-47F4-8341-04E319611D1A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BC95899D-5768-47F4-8341-04E319611D1A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{BC95899D-5768-47F4-8341-04E319611D1A}.Release|Any CPU.Build.0 = Release|Any CPU
 		{50A7BA87-D443-4ED1-80A0-0568B7A0D6F9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
@@ -30,9 +33,16 @@ Global
 		{50A7BA87-D443-4ED1-80A0-0568B7A0D6F9}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{50A7BA87-D443-4ED1-80A0-0568B7A0D6F9}.Release|Any CPU.Build.0 = Release|Any CPU
 		{DAF213E5-0BD4-47CD-B64A-B271AEEFBDE2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{DAF213E5-0BD4-47CD-B64A-B271AEEFBDE2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DAF213E5-0BD4-47CD-B64A-B271AEEFBDE2}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{DAF213E5-0BD4-47CD-B64A-B271AEEFBDE2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{410641DC-B1FA-49AE-A553-76AD7B933D66}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{410641DC-B1FA-49AE-A553-76AD7B933D66}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{410641DC-B1FA-49AE-A553-76AD7B933D66}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{410641DC-B1FA-49AE-A553-76AD7B933D66}.Release|Any CPU.Build.0 = Release|Any CPU
+		{80C241CE-AA05-4682-8393-F3C4E3F85046}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{80C241CE-AA05-4682-8393-F3C4E3F85046}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{80C241CE-AA05-4682-8393-F3C4E3F85046}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{80C241CE-AA05-4682-8393-F3C4E3F85046}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

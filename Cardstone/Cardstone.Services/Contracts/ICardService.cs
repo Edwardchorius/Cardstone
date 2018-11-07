@@ -8,6 +8,6 @@ namespace Cardstone.Services.Contracts
 
         Card GetCard(string name);
 
-        int Compare(string first, string second, ICardService other);
+        int CompareCardAttack(string first, string second);
     }
 }
