@@ -1,6 +1,4 @@
 ﻿using Cardstone.CLI.Contracts;
-using Cardstone.Data.Context;
-using Cardstone.Data.Models;
 using Cardstone.Services.Contracts;
 using System;
 using System.Collections.Generic;
@@ -12,8 +10,8 @@ namespace Cardstone.CLI.Commands
     {
         private IPlayerService _playerService;
 
-        public RegisterPlayerCommand(IPlayerService playerService) 
-            
+        public RegisterPlayerCommand(IPlayerService playerService)
+
         {
             this._playerService = playerService;
         }
@@ -25,7 +23,7 @@ namespace Cardstone.CLI.Commands
             var playerName = args[0];
 
             if (this._playerService.GetPlayers()
-                .Any(u => u.Username == playerName))
+                .Any(u => u.UserName == playerName))
             {
                 throw new Exception("User already exists!");
             }

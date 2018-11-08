@@ -21,5 +21,4 @@ namespace Cardstone.Data.Models.Contracts
         [DataType(DataType.DateTime)]
         public DateTime? ModifiedOn { get; set; }
     }
-
 }

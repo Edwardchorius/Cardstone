@@ -4,7 +4,8 @@ using Cardstone.CLI.Commands.BattleCommads;
 using Cardstone.CLI.Commands.CardCommands;
 using Cardstone.CLI.Contracts;
 using Cardstone.CLI.Core;
-using Cardstone.Data.Context;
+using Cardstone.Data.Data;
+using Cardstone.Database.Data;
 using System.Reflection;
 
 namespace Cardstone.CLI.Injector
@@ -19,7 +20,7 @@ namespace Cardstone.CLI.Injector
             builder.RegisterType<PurchaseCardCommand>().Named<ICommand>("purchasecard");
             builder.RegisterType<CommenceBattleCommand>().Named<ICommand>("commencebattle");
             builder.RegisterType<Engine>().As<IEngine>().SingleInstance();
-            builder.RegisterType<CardstoneContext>().As<ICardstoneContext>();
+            builder.RegisterType<CardstoneContext>().As<IApplicationDbContext>();
 
 
             // builder.RegisterType<>().Named<ICommand>("");

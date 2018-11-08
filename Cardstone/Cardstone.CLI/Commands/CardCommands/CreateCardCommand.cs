@@ -1,11 +1,9 @@
 ﻿using Cardstone.CLI.Contracts;
-using Cardstone.Data.Context;
 using Cardstone.Data.Exceptions;
 using Cardstone.Services.Contracts;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 
 namespace Cardstone.CLI.Commands.CardCommands
 {
@@ -21,7 +19,7 @@ namespace Cardstone.CLI.Commands.CardCommands
         public void Execute(IEnumerable<string> parameters)
         {
             var args = parameters.ToList();
-            
+
             if (args.Count != 3)
             {
                 throw new ArgumentException("Invalid input parameters count passed!");
@@ -34,18 +32,18 @@ namespace Cardstone.CLI.Commands.CardCommands
             try
             {
                 var addedCard = this.cardService.CreateCard(name, attack, price);
-                
+
                 Console.WriteLine($"Added card with Id {addedCard.Id}");
             }
             catch (CardAlreadyExistException ex)
             {
                 throw new CardAlreadyExistException(ex.Message);
             }
-            catch(CardDoesNotExistException ex)
+            catch (CardDoesNotExistException ex)
             {
                 throw new CardDoesNotExistException(ex.Message);
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 throw new CardException(ex.Message);
             }

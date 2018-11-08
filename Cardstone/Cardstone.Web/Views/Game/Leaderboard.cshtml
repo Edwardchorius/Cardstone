@@ -1,0 +1,25 @@
+﻿@model IEnumerable<PlayerViewModel>
+
+@{
+    ViewData["Title"] = "Leaderboard";
+}
+
+<h2>Leaderboard</h2>
+<td><button type="button" asp-area="" asp-controller="Game" asp-action="FindPlayerInLeaderboard">Where I am?</button></td>
+
+<table>
+    <tr>
+        <th>Id</th>
+        <th>Avatar</th>
+        <th>Username</th>
+        <th>Experience Points</th>
+    </tr>
+    @foreach (var player in Model)
+    {
+        <tr>
+            <td><img src="@player.AvatarURL" , alt="avatar" style="height: 40px; width: 40px;" /></td>
+            <td>@player.Username</td>
+            <td>@player.XP</td>
+        </tr>
+    }
+</table>

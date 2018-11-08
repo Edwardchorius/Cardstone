@@ -12,6 +12,7 @@ using Cardstone.Services;
 using Cardstone.Services.Contracts.General;
 using Cardstone.Services.Contracts;
 using Cardstone.Database.Data;
+using Cardstone.Data.Data;
 
 namespace Cardstone.Web
 {
@@ -36,23 +37,16 @@ namespace Cardstone.Web
             this.RegisterInfrastructure(services);
         }
 
-
-        private void RegisterInfrastructure(IServiceCollection services)
+        private void RegisterServices(IServiceCollection services)
         {
-            services.AddRouting(options => options.LowercaseUrls = true);
-            services.AddMvc()
-                .SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
+            services.AddTransient<IApplicationDbContext, CardstoneContext>();
+
+            services.AddTransient<ICardService, CardService>();
+            services.AddTransient<ICombatService, CombatService>();
+            services.AddTransient<IPlayersCardsService, PlayersCardsService>();
+            services.AddTransient<IPlayerService, PlayerService>();
+            services.AddTransient<IPurchaseService, PurchaseService>();
         }
-
-
-        private void RegisterData(IServiceCollection services)
-        {
-            services.AddDbContext<CardstoneContext>(options =>
-            {
-                options.UseSqlServer(this.Configuration.GetConnectionString("DefaultConnection"));
-            });
-        }
-
 
         private void RegisterAuthentication(IServiceCollection services)
         {
@@ -77,19 +71,22 @@ namespace Cardstone.Web
                     options.Lockout.MaxFailedAccessAttempts = 999;
                 });
             }
-
         }
 
-
-        private void RegisterServices(IServiceCollection services)
+        private void RegisterData(IServiceCollection services)
         {
-            services.AddTransient<ICardService, CardService>();
-            services.AddTransient<ICombatService, CombatService>();
-            services.AddTransient<IPlayersCardsService, PlayersCardsService>();
-            services.AddTransient<IPlayerService, PlayerService>();
-            services.AddTransient<IPurchaseService, PurchaseService>();
+            services.AddDbContext<CardstoneContext>(options =>
+            {
+                options.UseSqlServer(this.Configuration.GetConnectionString("DefaultConnection"));
+            });
         }
 
+        private void RegisterInfrastructure(IServiceCollection services)
+        {
+            services.AddRouting(options => options.LowercaseUrls = true);
+            services.AddMvc()
+                .SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
+        }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)

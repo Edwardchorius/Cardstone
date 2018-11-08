@@ -13,7 +13,7 @@ using System.Text;
 
 namespace Cardstone.Database.Data
 {
-    public class CardstoneContext : IdentityDbContext<Player>
+    public class CardstoneContext : IdentityDbContext<Player>, IApplicationDbContext
     {
 
         public CardstoneContext(DbContextOptions<CardstoneContext> options)
