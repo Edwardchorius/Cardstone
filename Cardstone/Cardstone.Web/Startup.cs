@@ -34,7 +34,7 @@ namespace Cardstone.Web
             this.RegisterServices(services);
             this.RegisterAuthentication(services);
             this.RegisterData(services);
-            this.RegisterInfrastructure(services);
+            this.RegisterInfrastructure(services);          
         }
 
         private void RegisterServices(IServiceCollection services)
@@ -107,6 +107,11 @@ namespace Cardstone.Web
 
             app.UseMvc(routes =>
             {
+                routes.MapRoute(
+                    name: "first",
+                    template: "{controller}/{action}");
+
+
                 routes.MapRoute(
                     name: "default",
                     template: "{controller=Home}/{action=Index}/{id?}");

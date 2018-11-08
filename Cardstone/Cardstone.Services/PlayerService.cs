@@ -4,6 +4,7 @@ using System.Linq;
 using Cardstone.Data.Data;
 using Cardstone.Data.Exceptions;
 using Cardstone.Data.Models;
+using Cardstone.Database.Data;
 using Cardstone.Services.Contracts;
 
 
@@ -11,9 +12,9 @@ namespace Cardstone.Services
 {
     public class PlayerService : IPlayerService, IService
     {
-        private readonly IApplicationDbContext _context;
+        private readonly CardstoneContext _context;
 
-        public PlayerService(IApplicationDbContext context)
+        public PlayerService(CardstoneContext context)
         {
             this._context = context;
         }
@@ -35,7 +36,8 @@ namespace Cardstone.Services
                 PlayersCards = new List<PlayersCards>(),
                 WonCombats = new List<Combat>(),
                 LostCombats = new List<Combat>(),
-                Purchases = new List<Purchase>()
+                Purchases = new List<Purchase>(),
+                CreatedOn = DateTime.Now
             };
 
             this._context.Players.Add(player);

@@ -2,6 +2,7 @@
 using System.Linq;
 using Cardstone.Data.Data;
 using Cardstone.Data.Models;
+using Cardstone.Database.Data;
 using Cardstone.Services.Contracts.General;
 
 
@@ -9,14 +10,14 @@ namespace Cardstone.Services.Contracts
 {
     public class CombatService : ICombatService, IService
     {
-        private readonly IApplicationDbContext _context;
+        private readonly CardstoneContext _context;
         private readonly IPlayerService _playerService;
         private readonly ICardService _cardService;
         private readonly IPlayersCardsService _playersCardsService;
 
         public CombatService(IPlayerService playerService, ICardService cardService,
             IPlayersCardsService playersCardsService,
-            IApplicationDbContext context)
+            CardstoneContext context)
         {
             this._playerService = playerService;
             this._cardService = cardService;

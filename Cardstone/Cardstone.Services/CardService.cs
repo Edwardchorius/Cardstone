@@ -4,6 +4,7 @@ using System.Linq;
 using Cardstone.Data.Data;
 using Cardstone.Data.Exceptions;
 using Cardstone.Data.Models;
+using Cardstone.Database.Data;
 using Cardstone.Services.Contracts;
 using static Cardstone.Data.Utilities.Globals;
 
@@ -11,9 +12,9 @@ namespace Cardstone.Services
 {
     public class CardService : ICardService, IService
     {
-        private readonly IApplicationDbContext _context;
+        private readonly CardstoneContext _context;
 
-        public CardService(IApplicationDbContext context)
+        public CardService(CardstoneContext context)
         {
             this._context = context;
         }

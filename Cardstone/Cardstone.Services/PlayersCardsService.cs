@@ -1,5 +1,6 @@
 ﻿using Cardstone.Data.Data;
 using Cardstone.Data.Models;
+using Cardstone.Database.Data;
 using Cardstone.Services.Contracts;
 using Cardstone.Services.Contracts.General;
 using System;
@@ -10,9 +11,9 @@ namespace Cardstone.Services
 {
     public class PlayersCardsService : IPlayersCardsService, IService
     {
-        IApplicationDbContext _context;
+        CardstoneContext _context;
 
-        public PlayersCardsService(IApplicationDbContext context)
+        public PlayersCardsService(CardstoneContext context)
         {
             this._context = context;
         }
