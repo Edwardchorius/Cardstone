@@ -33,7 +33,7 @@ namespace Cardstone.Web
             this.RegisterServices(services);
             this.RegisterAuthentication(services);
             this.RegisterData(services);
-            this.RegisterInfrastructure(services);
+            this.RegisterInfrastructure(services);          
         }
 
 
@@ -44,6 +44,15 @@ namespace Cardstone.Web
                 .SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
         }
 
+
+        private void RegisterServices(IServiceCollection services)
+        {
+            services.AddTransient<ICardService, CardService>();
+            services.AddTransient<ICombatService, CombatService>();
+            services.AddTransient<IPlayersCardsService, PlayersCardsService>();
+            services.AddTransient<IPurchaseService, PurchaseService>();
+            services.AddTransient<IPlayerService, PlayerService>();
+        }
 
         private void RegisterData(IServiceCollection services)
         {
@@ -81,15 +90,6 @@ namespace Cardstone.Web
         }
 
 
-        private void RegisterServices(IServiceCollection services)
-        {
-            services.AddTransient<ICardService, CardService>();
-            services.AddTransient<ICombatService, CombatService>();
-            services.AddTransient<IPlayersCardsService, PlayersCardsService>();
-            services.AddTransient<IPlayerService, PlayerService>();
-            services.AddTransient<IPurchaseService, PurchaseService>();
-        }
-
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
@@ -110,6 +110,11 @@ namespace Cardstone.Web
 
             app.UseMvc(routes =>
             {
+                routes.MapRoute(
+                    name: "first",
+                    template: "{controller}/{action}");
+
+
                 routes.MapRoute(
                     name: "default",
                     template: "{controller=Home}/{action=Index}/{id?}");

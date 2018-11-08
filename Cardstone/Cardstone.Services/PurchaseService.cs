@@ -1,18 +1,19 @@
 ﻿using Cardstone.Data.Data;
 using Cardstone.Data.Exceptions;
 using Cardstone.Data.Models;
+using Cardstone.Database.Data;
 using Cardstone.Services.Contracts;
 
 namespace Cardstone.Services
 {
     public class PurchaseService : IPurchaseService, IService
     {
-        private readonly IApplicationDbContext context;
+        private readonly CardstoneContext context;
         private readonly ICardService cardService;
         private readonly IPlayerService playerService;
 
 
-        public PurchaseService(IApplicationDbContext context,
+        public PurchaseService(CardstoneContext context,
                                ICardService cardService,
                                IPlayerService playerService)
         {
