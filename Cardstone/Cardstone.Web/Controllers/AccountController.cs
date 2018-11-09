@@ -144,7 +144,7 @@ namespace Cardstone.Web.Controllers
             }
             else
             {
-                return this.RedirectToAction(nameof(HomeController.SignedInIndex), "Home");
+                return this.RedirectToAction(nameof(GameController.Index), "Game");
             }
         }
     }
