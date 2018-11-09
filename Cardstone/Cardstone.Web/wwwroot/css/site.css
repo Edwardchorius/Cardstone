@@ -35,3 +35,13 @@ body {
         display: none;
     }
 }
+
+body {
+    background-image: url("https://www.pixelstalk.net/wp-content/uploads/2016/10/Free-hd-blurred-wallpaper.jpg");
+    background-color: #cccccc;
+}
+
+.table:hover {
+    transition: all .3s ease;
+    background: rgb(0, 255, 255);
+}

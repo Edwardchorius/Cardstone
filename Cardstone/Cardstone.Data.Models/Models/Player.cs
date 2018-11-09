@@ -17,6 +17,10 @@ namespace Cardstone.Data.Models
 
         public int Coins { get; set; }           
 
+        public int Level { get; set; }
+
+        public int LeaderboardRank { get; set; }
+
         public ICollection<PlayersCards> PlayersCards { get; set; }
 
         public ICollection<Combat> WonCombats { get; set; }

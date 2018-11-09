@@ -83,10 +83,16 @@ namespace Cardstone.Web.Controllers
             this.ViewData["ReturnUrl"] = returnUrl;
             if (this.ModelState.IsValid)
             {
-                var user = new Player { UserName = model.Username, PasswordHash = model.Password, Email = model.Email,
+                var user = new Player
+                {
+                    UserName = model.Username,
+                    PasswordHash = model.Password,
+                    Email = model.Email,
+                    AvatarImageName = model.AvatarURL,
                     Health = 100,
                     XP = 0,
                     Coins = 150,
+                    Level = 1,
                     PlayersCards = new List<PlayersCards>(),
                     WonCombats = new List<Combat>(),
                     LostCombats = new List<Combat>(),
@@ -136,7 +142,11 @@ namespace Cardstone.Web.Controllers
             }
             else
             {
+<<<<<<< HEAD
                 return this.RedirectToAction(nameof(SignedInHomeController.SignedInIndex), "SignedInHome");
+=======
+                return this.RedirectToAction(nameof(GameController.Index), "Game");
+>>>>>>> 28e592d1aedb4e56005c34c6e35f97e7c4840eac
             }
         }
     }
