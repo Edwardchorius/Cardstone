@@ -7,19 +7,23 @@
 <h2>Leaderboard</h2>
 <td><button type="button" asp-area="" asp-controller="Game" asp-action="FindPlayerInLeaderboard">Where I am?</button></td>
 
-<table>
+<table class="table table-striped table-hover">
     <tr>
-        <th>Id</th>
+        <th>Rank</th>
         <th>Avatar</th>
         <th>Username</th>
         <th>Experience Points</th>
     </tr>
+    @{int counter = 1;}
     @foreach (var player in Model)
     {
         <tr>
+            <td>@counter</td>
             <td><img src="@player.AvatarURL" , alt="avatar" style="height: 40px; width: 40px;" /></td>
             <td>@player.Username</td>
             <td>@player.XP</td>
+
+            @{counter++;}
         </tr>
     }
 </table>
