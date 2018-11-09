@@ -1,16 +1,21 @@
 ﻿using Cardstone.Services.Contracts;
 using Cardstone.Web.Models;
+using Cardstone.Web.Models.DeckViewModels;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Linq;
 
 namespace Cardstone.Web.Controllers
 {
+    [Authorize]
     public class GameController : Controller
     {
         private readonly IPlayerService _playerService;
+        private readonly ICardService _cardService;
 
-        public GameController(IPlayerService playerService)
+        public GameController(IPlayerService playerService, ICardService cardService)
         {
+            this._cardService = cardService;
             this._playerService = playerService;
         }
 
@@ -32,6 +37,13 @@ namespace Cardstone.Web.Controllers
 
             return View(players);
         }
+
+
+        //[HttpGet]
+        //public IActionResult Deck(DeckViewModel model)
+        //{
+        //    var playerCards = this._cardService.GetCards()
+        //}
 
         [HttpGet]
         public IActionResult Battle()
