@@ -63,7 +63,7 @@ namespace Cardstone.Services
                 throw new CardDoesNotExistException($"Card {name} does not exist!");
 
             return card;
-        }
+        }       
 
 
         public int CompareCardAttack(string first , string second)

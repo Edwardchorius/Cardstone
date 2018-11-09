@@ -19,13 +19,15 @@ namespace Cardstone.Web.Controllers
     public class AccountController : Controller
     {
         private readonly IPlayerService _playerService;
+        private readonly IPurchaseService _purchaseService;
         private readonly UserManager<Player> _userManager;
         private readonly SignInManager<Player> _signInManager;
 
         public AccountController(UserManager<Player> userManager, SignInManager<Player> signInManager,
-            IPlayerService playerService)
+            IPlayerService playerService, IPurchaseService purchaseService)
         {
             this._playerService = playerService;
+            this._purchaseService = purchaseService;
             this._userManager = userManager;
             this._signInManager = signInManager;
         }
@@ -86,6 +88,7 @@ namespace Cardstone.Web.Controllers
             if (this.ModelState.IsValid)
             {
                 var user = this._playerService.AddPlayer(model.Username, model.Password, model.Email, model.AvatarURL);
+                this._purchaseService.StartingCards(user);
                 var result = await this._userManager.CreateAsync(user, model.Password);
 
 

@@ -1,4 +1,5 @@
 ﻿using Cardstone.Data.Models;
+using System.Collections.Generic;
 
 namespace Cardstone.Services.Contracts
 {
