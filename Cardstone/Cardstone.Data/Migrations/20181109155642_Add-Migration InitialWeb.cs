@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace Cardstone.Database.Migrations
 {
-    public partial class InitialWeb : Migration
+    public partial class AddMigrationInitialWeb : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -45,6 +45,8 @@ namespace Cardstone.Database.Migrations
                     Health = table.Column<int>(nullable: false),
                     XP = table.Column<int>(nullable: false),
                     Coins = table.Column<int>(nullable: false),
+                    Level = table.Column<int>(nullable: false),
+                    LeaderboardRank = table.Column<int>(nullable: false),
                     IsDeleted = table.Column<bool>(nullable: false),
                     DeletedOn = table.Column<DateTime>(nullable: true),
                     CreatedOn = table.Column<DateTime>(nullable: true),
@@ -269,7 +271,7 @@ namespace Cardstone.Database.Migrations
             migrationBuilder.InsertData(
                 table: "AspNetRoles",
                 columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
-                values: new object[] { "247aae81-2ab5-46dc-9c16-0b0943e0f006", "eae1db1f-d594-4155-a528-b4ee675e9079", "Admin", null });
+                values: new object[] { "c5682aa8-fa58-47dc-809b-22932ef8d502", "fee755f0-c1f4-4174-8a25-6e4367f1bf31", "Admin", null });
 
             migrationBuilder.CreateIndex(
                 name: "IX_AspNetRoleClaims_RoleId",

@@ -5,7 +5,7 @@ namespace Cardstone.Services.Contracts
 {
     public interface IPlayerService : IService
     {
-        Player AddPlayer(string username);
+        Player AddPlayer(string username, string password, string email, string avatarUrl);
 
         Player GetPlayer(string playerId);
 

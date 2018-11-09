@@ -5,7 +5,6 @@ using System.Threading.Tasks;
 using Cardstone.Data.Models;
 using Cardstone.Services;
 using Cardstone.Services.Contracts;
-using Cardstone.Web.Controllers.HomeControllers;
 using Cardstone.Web.Models.AccountViewModels;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authorization;
@@ -19,11 +18,14 @@ namespace Cardstone.Web.Controllers
     [Authorize]
     public class AccountController : Controller
     {
+        private readonly IPlayerService _playerService;
         private readonly UserManager<Player> _userManager;
         private readonly SignInManager<Player> _signInManager;
 
-        public AccountController(UserManager<Player> userManager, SignInManager<Player> signInManager)
+        public AccountController(UserManager<Player> userManager, SignInManager<Player> signInManager,
+            IPlayerService playerService)
         {
+            this._playerService = playerService;
             this._userManager = userManager;
             this._signInManager = signInManager;
         }
@@ -83,23 +85,7 @@ namespace Cardstone.Web.Controllers
             this.ViewData["ReturnUrl"] = returnUrl;
             if (this.ModelState.IsValid)
             {
-                var user = new Player
-                {
-                    UserName = model.Username,
-                    PasswordHash = model.Password,
-                    Email = model.Email,
-                    AvatarImageName = model.AvatarURL,
-                    Health = 100,
-                    XP = 0,
-                    Coins = 150,
-                    Level = 1,
-                    PlayersCards = new List<PlayersCards>(),
-                    WonCombats = new List<Combat>(),
-                    LostCombats = new List<Combat>(),
-                    Purchases = new List<Purchase>(),
-                    CreatedOn = DateTime.Now,
-                    IsDeleted = false
-                };
+                var user = this._playerService.AddPlayer(model.Username, model.Password, model.Email, model.AvatarURL);
                 var result = await this._userManager.CreateAsync(user, model.Password);
 
 
@@ -142,11 +128,7 @@ namespace Cardstone.Web.Controllers
             }
             else
             {
-<<<<<<< HEAD
-                return this.RedirectToAction(nameof(SignedInHomeController.SignedInIndex), "SignedInHome");
-=======
                 return this.RedirectToAction(nameof(GameController.Index), "Game");
->>>>>>> 28e592d1aedb4e56005c34c6e35f97e7c4840eac
             }
         }
     }

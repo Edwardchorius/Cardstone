@@ -19,7 +19,7 @@ namespace Cardstone.Services
             this._context = context;
         }
 
-        public Player AddPlayer(string username)
+        public Player AddPlayer(string username, string password, string email, string avatarUrl)
         {
             if (username == null)
                 throw new ArgumentNullException("Username cannot be null");
@@ -30,55 +30,60 @@ namespace Cardstone.Services
             Player player = new Player
             {
                 UserName = username,
+                PasswordHash = password,
+                Email = email,
+                AvatarImageName = avatarUrl,
                 Health = 100,
                 XP = 0,
                 Coins = 150,
+                Level = 1,
                 PlayersCards = new List<PlayersCards>(),
                 WonCombats = new List<Combat>(),
                 LostCombats = new List<Combat>(),
                 Purchases = new List<Purchase>(),
-                CreatedOn = DateTime.Now
-            };
+                CreatedOn = DateTime.Now,
+                IsDeleted = false,
+        };
 
-            this._context.Players.Add(player);
-            this._context.SaveChanges();
-
-            return player;
-        }
-
-        public Player GetPlayer(string playerId)
-        {
-            if (playerId == null)
-                throw new ArgumentNullException("Username cannot be null");
-
-            Player player = this._context.Players.Find(playerId);
-
-            if (player == null)
-                throw new PlayerDoesNotExistException("There is no such username in database");
+            //this._context.Players.Add(player);
+            //this._context.SaveChanges();
 
             return player;
         }
 
-        public IEnumerable<PlayersCards> GetPlayerCards(string username)
-        {
-            var cards = this._context.PlayersCards.Where(k => k.Player.UserName == username).ToList();
+    public Player GetPlayer(string playerId)
+    {
+        if (playerId == null)
+            throw new ArgumentNullException("Username cannot be null");
 
-            return cards;
-        }
+        Player player = this._context.Players.Find(playerId);
 
-        public void CoinReward(string playerId, int coins)
-        {
-            var playerToWin = this._context.Players.Find(playerId);
-            playerToWin.Coins += coins;
-        }
+        if (player == null)
+            throw new PlayerDoesNotExistException("There is no such username in database");
 
-        public void XpReward(string playerId, int xp)
-        {
-            var playerToWin = this._context.Players.Find(playerId);
-            playerToWin.XP += xp;
-        }
-
-        public IEnumerable<Player> GetPlayers()
-            => this._context.Players;
+        return player;
     }
+
+    public IEnumerable<PlayersCards> GetPlayerCards(string username)
+    {
+        var cards = this._context.PlayersCards.Where(k => k.Player.UserName == username).ToList();
+
+        return cards;
+    }
+
+    public void CoinReward(string playerId, int coins)
+    {
+        var playerToWin = this._context.Players.Find(playerId);
+        playerToWin.Coins += coins;
+    }
+
+    public void XpReward(string playerId, int xp)
+    {
+        var playerToWin = this._context.Players.Find(playerId);
+        playerToWin.XP += xp;
+    }
+
+    public IEnumerable<Player> GetPlayers()
+        => this._context.Players;
+}
 }
