@@ -30,6 +30,8 @@ namespace Cardstone.Web.Models.AccountViewModels
         [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
         public string ConfirmPassword { get; set; }
 
-
+        [DataType(DataType.ImageUrl)]
+        public string AvatarURL 
+            => "http://icons-for-free.com/free-icons/png/512/1287507.png";
     }
 }

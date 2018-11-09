@@ -85,10 +85,16 @@ namespace Cardstone.Web.Controllers
             this.ViewData["ReturnUrl"] = returnUrl;
             if (this.ModelState.IsValid)
             {
-                var user = new Player { UserName = model.Username, PasswordHash = model.Password, Email = model.Email,
+                var user = new Player
+                {
+                    UserName = model.Username,
+                    PasswordHash = model.Password,
+                    Email = model.Email,
+                    AvatarImageName = model.AvatarURL,
                     Health = 100,
                     XP = 0,
                     Coins = 150,
+                    Level = 1,
                     PlayersCards = new List<PlayersCards>(),
                     WonCombats = new List<Combat>(),
                     LostCombats = new List<Combat>(),
