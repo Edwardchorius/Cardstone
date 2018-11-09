@@ -7,7 +7,11 @@ namespace Cardstone.Data.Models
     {      
         public string Name { get; set; }
 
+        public string ImageURL { get; set; }
+
         public int Attack { get; set; }
+
+        public int Armor { get; set; }
 
         public int Price { get; set; }
 
