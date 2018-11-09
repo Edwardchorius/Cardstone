@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Cardstone.Data.Models;
 using Cardstone.Services;
 using Cardstone.Services.Contracts;
+using Cardstone.Web.Controllers.HomeControllers;
 using Cardstone.Web.Models.AccountViewModels;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authorization;
@@ -18,16 +19,13 @@ namespace Cardstone.Web.Controllers
     [Authorize]
     public class AccountController : Controller
     {
-        private readonly IPlayerService _playerService;
         private readonly UserManager<Player> _userManager;
         private readonly SignInManager<Player> _signInManager;
 
-        public AccountController(UserManager<Player> userManager, SignInManager<Player> signInManager,
-            IPlayerService playerService)
+        public AccountController(UserManager<Player> userManager, SignInManager<Player> signInManager)
         {
             this._userManager = userManager;
             this._signInManager = signInManager;
-            this._playerService = playerService;
         }
 
         [HttpGet]
@@ -138,7 +136,7 @@ namespace Cardstone.Web.Controllers
             }
             else
             {
-                return this.RedirectToAction(nameof(HomeController.SignedInIndex), "Home");
+                return this.RedirectToAction(nameof(SignedInHomeController.SignedInIndex), "SignedInHome");
             }
         }
     }

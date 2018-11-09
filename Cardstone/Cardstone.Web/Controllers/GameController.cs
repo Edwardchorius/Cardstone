@@ -33,7 +33,7 @@ namespace Cardstone.Web.Controllers
             return View(players);
         }
 
-        [HttpPost]
+        [HttpGet]
         public IActionResult Battle()
         {
             return View();
