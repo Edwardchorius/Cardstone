@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Cardstone.Database.Migrations
 {
     [DbContext(typeof(CardstoneContext))]
-    [Migration("20181107160536_InitialWeb")]
-    partial class InitialWeb
+    [Migration("20181109155642_Add-Migration InitialWeb")]
+    partial class AddMigrationInitialWeb
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -103,6 +103,10 @@ namespace Cardstone.Database.Migrations
                     b.Property<int>("Health");
 
                     b.Property<bool>("IsDeleted");
+
+                    b.Property<int>("LeaderboardRank");
+
+                    b.Property<int>("Level");
 
                     b.Property<bool>("LockoutEnabled");
 
@@ -209,7 +213,7 @@ namespace Cardstone.Database.Migrations
                     b.ToTable("AspNetRoles");
 
                     b.HasData(
-                        new { Id = "247aae81-2ab5-46dc-9c16-0b0943e0f006", ConcurrencyStamp = "eae1db1f-d594-4155-a528-b4ee675e9079", Name = "Admin" }
+                        new { Id = "c5682aa8-fa58-47dc-809b-22932ef8d502", ConcurrencyStamp = "fee755f0-c1f4-4174-8a25-6e4367f1bf31", Name = "Admin" }
                     );
                 });
 

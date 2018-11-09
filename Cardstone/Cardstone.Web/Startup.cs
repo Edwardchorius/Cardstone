@@ -38,9 +38,7 @@ namespace Cardstone.Web
         }
 
         private void RegisterServices(IServiceCollection services)
-        {
-            services.AddTransient<IApplicationDbContext, CardstoneContext>();
-
+        {    
             services.AddTransient<ICardService, CardService>();
             services.AddTransient<ICombatService, CombatService>();
             services.AddTransient<IPlayersCardsService, PlayersCardsService>();

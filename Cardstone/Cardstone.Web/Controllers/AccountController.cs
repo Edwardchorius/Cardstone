@@ -25,9 +25,9 @@ namespace Cardstone.Web.Controllers
         public AccountController(UserManager<Player> userManager, SignInManager<Player> signInManager,
             IPlayerService playerService)
         {
+            this._playerService = playerService;
             this._userManager = userManager;
             this._signInManager = signInManager;
-            this._playerService = playerService;
         }
 
         [HttpGet]
@@ -85,23 +85,7 @@ namespace Cardstone.Web.Controllers
             this.ViewData["ReturnUrl"] = returnUrl;
             if (this.ModelState.IsValid)
             {
-                var user = new Player
-                {
-                    UserName = model.Username,
-                    PasswordHash = model.Password,
-                    Email = model.Email,
-                    AvatarImageName = model.AvatarURL,
-                    Health = 100,
-                    XP = 0,
-                    Coins = 150,
-                    Level = 1,
-                    PlayersCards = new List<PlayersCards>(),
-                    WonCombats = new List<Combat>(),
-                    LostCombats = new List<Combat>(),
-                    Purchases = new List<Purchase>(),
-                    CreatedOn = DateTime.Now,
-                    IsDeleted = false
-                };
+                var user = this._playerService.AddPlayer(model.Username, model.Password, model.Email, model.AvatarURL);
                 var result = await this._userManager.CreateAsync(user, model.Password);
 
 

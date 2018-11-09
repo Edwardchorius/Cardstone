@@ -16,4 +16,8 @@
     <ProjectReference Include="..\Cardstone.Services\Cardstone.Services.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Models\PlayerViewModels\" />
+  </ItemGroup>
+
 </Project>
