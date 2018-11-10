@@ -5,6 +5,8 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Cardstone.Web.Models;
+using Microsoft.AspNetCore.Identity;
+using Cardstone.Data.Models;
 
 namespace Cardstone.Web.Controllers
 {
@@ -12,6 +14,10 @@ namespace Cardstone.Web.Controllers
     {
         public IActionResult Index()
         {
+            if (HttpContext.User.Identity.IsAuthenticated)
+            {
+                return this.RedirectToAction(nameof(GameController.Index), "Game");
+            }
             return View();
         }
 
