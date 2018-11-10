@@ -1,13 +1,15 @@
 ﻿@model IEnumerable<PlayerViewModel>
+
 @{ 
     Layout = "~/Views/Shared/_SignedInLayout.cshtml";
 }
+
 @{
     ViewData["Title"] = "Play";
 }
 
 <h2>Play</h2>
-<table>
+<table class="table table-condensed table-hover">
     <tr>
         <th>Avatar</th>
         <th>Username</th>
@@ -17,10 +19,10 @@
     @foreach (var player in Model)
     {
         <tr>
-            <td><img src="@player.AvatarURL" , alt="avatar" style="height: 40px; width: 40px;" /></td>
+            <td><img class="mini-avatar" src="@player.AvatarURL"/></td>
             <td>@player.Username</td>
             <td>@player.XP</td>
-            <td><button type="button" asp-area="" asp-controller="Game" asp-action="Battle">Battle!</button></td>
+            <td><button class="btn btn-success" type="button" asp-area="" asp-controller="Game" asp-action="Battle">Battle!</button></td>
         </tr>
     }
 </table>
