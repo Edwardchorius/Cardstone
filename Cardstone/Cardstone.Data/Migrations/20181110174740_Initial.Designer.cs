@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Cardstone.Database.Migrations
 {
     [DbContext(typeof(CardstoneContext))]
-    [Migration("20181109155642_Add-Migration InitialWeb")]
-    partial class AddMigrationInitialWeb
+    [Migration("20181110174740_Initial")]
+    partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -27,11 +27,15 @@ namespace Cardstone.Database.Migrations
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+                    b.Property<int>("Armor");
+
                     b.Property<int>("Attack");
 
                     b.Property<DateTime?>("CreatedOn");
 
                     b.Property<DateTime?>("DeletedOn");
+
+                    b.Property<string>("ImageURL");
 
                     b.Property<bool>("IsDeleted");
 
@@ -213,7 +217,7 @@ namespace Cardstone.Database.Migrations
                     b.ToTable("AspNetRoles");
 
                     b.HasData(
-                        new { Id = "c5682aa8-fa58-47dc-809b-22932ef8d502", ConcurrencyStamp = "fee755f0-c1f4-4174-8a25-6e4367f1bf31", Name = "Admin" }
+                        new { Id = "9355d1b9-418b-4a93-bf4c-40d80561a1a6", ConcurrencyStamp = "3d8442e2-b087-4679-b682-c022d92f48e6", Name = "Admin" }
                     );
                 });
 

@@ -1,21 +1,25 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using Cardstone.Data.Data;
 using Cardstone.Data.Exceptions;
 using Cardstone.Data.Models;
 using Cardstone.Database.Data;
 using Cardstone.Services.Contracts;
+using Microsoft.AspNetCore.Identity;
 using static Cardstone.Data.Utilities.Globals;
 
 namespace Cardstone.Services
 {
     public class CardService : ICardService, IService
     {
+        private IPlayerService _playerService;
         private readonly CardstoneContext _context;
 
-        public CardService(CardstoneContext context)
+        public CardService(CardstoneContext context, IPlayerService playerService)
         {
+            this._playerService = playerService;
             this._context = context;
         }
 
@@ -65,9 +69,11 @@ namespace Cardstone.Services
             return card;
         }
 
-        public IEnumerable<PlayersCards> GetCards(Player player)
+        public IEnumerable<PlayersCards> GetCards(string player)
         {
-            var playerCards = this._context.Players.Find(player).PlayersCards.ToList();
+            var playerName = this._playerService.GetPlayer(player);
+
+            var playerCards = this._playerService.GetPlayerCards(playerName.UserName);
 
             return playerCards;
         }

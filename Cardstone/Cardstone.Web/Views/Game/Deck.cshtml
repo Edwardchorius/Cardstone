@@ -1,4 +1,11 @@
-﻿@{
+﻿@using Cardstone.Web.Models.DeckViewModels
+@model DeckViewModel
+
+@{
+    int counter = 0;
+}
+
+@{
     Layout = "~/Views/Shared/_SignedInLayout.cshtml";
 }
 
@@ -6,5 +13,11 @@
     ViewData["Title"] = "Deck";
 }
 
-<h2>Deck</h2>
-
+<div class="row">
+    @foreach (var playerCard in Model.PlayersCards)
+    {
+        <div class="column">
+            <img src="@playerCard.Card.ImageURL" height="200" width="100" "@playerCard.Card.Name" />
+        </div>
+    }
+</div>

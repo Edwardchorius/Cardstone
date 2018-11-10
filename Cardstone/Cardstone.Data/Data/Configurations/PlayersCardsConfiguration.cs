@@ -8,7 +8,7 @@ namespace Cardstone.Data.Configurations
     {
         public void Configure(EntityTypeBuilder<PlayersCards> builder)
         {
-            builder.HasKey(pc => new { pc.CardId, pc.PlayerId});          
+            builder.HasKey(pc => new { pc.CardId, pc.PlayerId });          
         }
     }
 }

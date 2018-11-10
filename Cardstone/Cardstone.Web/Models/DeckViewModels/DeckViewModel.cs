@@ -8,9 +8,6 @@ namespace Cardstone.Web.Models.DeckViewModels
 {
     public class DeckViewModel
     {
-        public DeckViewModel(Player player)
-        {
-
-        }
+        public IEnumerable<PlayersCards> PlayersCards { get; set; }        
     }
 }

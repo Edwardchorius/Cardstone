@@ -215,7 +215,7 @@ namespace Cardstone.Database.Migrations
                     b.ToTable("AspNetRoles");
 
                     b.HasData(
-                        new { Id = "ddc6aa9a-67f1-4b20-a31f-e842f3a39051", ConcurrencyStamp = "533b87f8-1209-47af-b2ae-1dece71aface", Name = "Admin" }
+                        new { Id = "9355d1b9-418b-4a93-bf4c-40d80561a1a6", ConcurrencyStamp = "3d8442e2-b087-4679-b682-c022d92f48e6", Name = "Admin" }
                     );
                 });
 

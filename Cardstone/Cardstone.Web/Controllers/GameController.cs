@@ -1,9 +1,12 @@
-﻿using Cardstone.Services.Contracts;
+﻿using Cardstone.Data.Models;
+using Cardstone.Services.Contracts;
 using Cardstone.Web.Models;
 using Cardstone.Web.Models.DeckViewModels;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using System.Linq;
+using System.Threading.Tasks;
 
 namespace Cardstone.Web.Controllers
 {
@@ -12,11 +15,13 @@ namespace Cardstone.Web.Controllers
     {
         private readonly IPlayerService _playerService;
         private readonly ICardService _cardService;
+        private readonly UserManager<Player> _userManager;
 
-        public GameController(IPlayerService playerService, ICardService cardService)
+        public GameController(IPlayerService playerService, ICardService cardService, UserManager<Player> userManager)
         {
             this._cardService = cardService;
             this._playerService = playerService;
+            this._userManager = userManager;
         }
 
         [HttpGet]
@@ -39,11 +44,16 @@ namespace Cardstone.Web.Controllers
         }
 
 
-        //[HttpGet]
-        //public IActionResult Deck(DeckViewModel model)
-        //{
-        //    var playerCards = this._cardService.GetCards()
-        //}
+        [HttpGet]
+        public IActionResult Deck(DeckViewModel model)
+        {
+            var currentUser = HttpContext.User.Identity.Name;
+            var playerCards = this._cardService.GetCards(currentUser);
+
+            model.PlayersCards = playerCards;
+
+            return View(model);
+        }
 
         [HttpGet]
         public IActionResult Battle()

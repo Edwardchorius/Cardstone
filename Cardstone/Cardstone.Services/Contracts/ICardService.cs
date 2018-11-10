@@ -1,4 +1,5 @@
 ﻿using Cardstone.Data.Models;
+using Microsoft.AspNetCore.Identity;
 using System.Collections.Generic;
 
 namespace Cardstone.Services.Contracts
@@ -9,7 +10,7 @@ namespace Cardstone.Services.Contracts
 
         Card GetCard(string name);
 
-        IEnumerable<PlayersCards> GetCards(Player player);
+        IEnumerable<PlayersCards> GetCards(string player);
 
         int CompareCardAttack(string first, string second);
     }
