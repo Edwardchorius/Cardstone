@@ -65,6 +65,12 @@ namespace Cardstone.Services
             return card;
         }
 
+        public IEnumerable<PlayersCards> GetCards(Player player)
+        {
+            var playerCards = this._context.Players.Find(player).PlayersCards.ToList();
+
+            return playerCards;
+        }
 
         public int CompareCardAttack(string first , string second)
         {

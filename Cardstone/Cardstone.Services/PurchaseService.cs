@@ -3,12 +3,15 @@ using Cardstone.Data.Exceptions;
 using Cardstone.Data.Models;
 using Cardstone.Database.Data;
 using Cardstone.Services.Contracts;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 
 namespace Cardstone.Services
 {
     public class PurchaseService : IPurchaseService, IService
     {
-        private readonly CardstoneContext context;
+        private readonly CardstoneContext _context;
         private readonly ICardService cardService;
         private readonly IPlayerService playerService;
 
@@ -17,7 +20,7 @@ namespace Cardstone.Services
                                ICardService cardService,
                                IPlayerService playerService)
         {
-            this.context = context;
+            this._context = context;
             this.cardService = cardService;
             this.playerService = playerService;
         }
@@ -39,12 +42,29 @@ namespace Cardstone.Services
 
             BalancePlayerBudget(this.playerService.GetPlayer(username), card.Price);
 
-            this.context.PlayersCards.Update(playersCards);
-            this.context.Purchases.Update(purchase);
+            this._context.PlayersCards.Update(playersCards);
+            this._context.Purchases.Update(purchase);
 
-            this.context.SaveChanges();
+            this._context.SaveChanges();
 
             return card;
+        }
+
+        public IEnumerable<Card> StartingCards(Player player)
+        {
+            var startingCards = this._context.Cards.OrderByDescending(k => k.Attack).Take(6);
+            var listCards = new List<PlayersCards>();
+
+            foreach (var card in startingCards)
+            {
+                var playerCards = new PlayersCards { Card = card, Player = player };
+                listCards.Add(playerCards);
+            }
+
+            this._context.PlayersCards.UpdateRange(listCards);
+            //this._context.SaveChanges();
+
+            return startingCards;
         }
 
         private void BalancePlayerBudget(Player player, int price)

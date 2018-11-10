@@ -4,14 +4,16 @@ using Cardstone.Database.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace Cardstone.Database.Migrations
 {
     [DbContext(typeof(CardstoneContext))]
-    partial class CardstoneContextModelSnapshot : ModelSnapshot
+    [Migration("20181109165405_AddedBonusFields")]
+    partial class AddedBonusFields
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -33,7 +35,7 @@ namespace Cardstone.Database.Migrations
 
                     b.Property<DateTime?>("DeletedOn");
 
-                    b.Property<string>("ImageURL");
+                    b.Property<string>("ImageUrl");
 
                     b.Property<bool>("IsDeleted");
 
