@@ -1,7 +1,6 @@
 ﻿@using Cardstone.Web.Models.DeckViewModels
 @model DeckViewModel
 
-
 @{
     Layout = "~/Views/Shared/_SignedInLayout.cshtml";
 }
@@ -10,14 +9,30 @@
     ViewData["Title"] = "Deck";
 }
 
-<h1>My Cards</h1>
+<h1 class="main-title">My Cards</h1>
 
-<div>
-    <div class="grid-container">
-
-        @foreach (var playerCard in Model.PlayersCards)
-        {
-            <div class="grid-item"><img src="@playerCard.Card.ImageURL" height="200" width="200" "@playerCard.Card.Name" /></div>
-        }
-    </div>
+<div class="card-container">
+    @foreach (var playerCard in Model.PlayersCards)
+    {
+        <div class="card flip-card" style="width: 18rem;">
+            <div class="flip-card-inner">
+                <div class="flip-card-front">
+                    <img class="card-image" src="@playerCard.Card.ImageURL">
+                    <h5 class="card-title">@playerCard.Card.Name</h5>
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item">Attack: <strong>@playerCard.Card.Attack</strong></li>
+                        <li class="list-group-item">Armor: <strong>@playerCard.Card.Armor</strong></li>
+                    </ul>
+                </div>
+                <div class="flip-card-back">
+                    <img src="https://i.pinimg.com/originals/8a/10/8a/8a108a478f3f25158750cdedc4001370.png" style="width:100%">
+                    <div class="card-description">
+                        <h4>Description</h4>
+                        <hr />
+                        <p class="card-text">The card descritpion</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
 </div>
