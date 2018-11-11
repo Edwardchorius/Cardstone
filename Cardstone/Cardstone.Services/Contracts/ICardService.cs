@@ -10,7 +10,7 @@ namespace Cardstone.Services.Contracts
 
         Card GetCard(string name);
 
-        IEnumerable<PlayersCards> GetCards(string player);
+        IEnumerable<Card> GetStoreCards(string player);
 
         int CompareCardAttack(string first, string second);
     }

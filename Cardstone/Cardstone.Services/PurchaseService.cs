@@ -52,7 +52,7 @@ namespace Cardstone.Services
 
         public IEnumerable<Card> StartingCards(Player player)
         {
-            var startingCards = this._context.Cards.OrderByDescending(k => k.Attack).Take(6);
+            var startingCards = this._context.Cards.OrderBy(k => k.Attack).Take(6);
             var listCards = new List<PlayersCards>();
 
             foreach (var card in startingCards)

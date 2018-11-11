@@ -48,7 +48,7 @@ namespace Cardstone.Web.Controllers
         public IActionResult Deck(DeckViewModel model)
         {
             var currentUser = HttpContext.User.Identity.Name;
-            var playerCards = this._cardService.GetCards(currentUser);
+            var playerCards = this._playerService.GetPlayerCards(currentUser);
 
             model.PlayersCards = playerCards;
 
