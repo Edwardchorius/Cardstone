@@ -211,3 +211,7 @@ card-container {
     .card-description hr {
         margin: 5px;
     }
+
+    .card-description a {
+        margin-top: 40px;
+    }

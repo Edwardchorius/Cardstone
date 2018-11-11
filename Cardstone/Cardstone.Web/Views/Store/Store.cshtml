@@ -8,16 +8,28 @@
     Layout = "~/Views/Shared/_SignedInLayout.cshtml";
 }
 
-<h1>Store</h1>
+<h1 class="main-title">Store</h1>
 
-<div>
-    <div class="grid-container">
-
-        @foreach (var card in Model.Cards)
-        {
-            <div class="grid-item"><img src="@card.ImageURL" height="200" width="200" alt="@card.Name" /></div>
-        }
-
-    </div>
+<div class="card-container">
+    @foreach (var card in Model.Cards)
+    {
+        <div class="card flip-card" style="width: 18rem;">
+            <div class="flip-card-inner">
+                <div class="flip-card-front">
+                    <img class="card-image" src="@card.ImageURL">
+                    <h5 class="card-title">@card.Name</h5>
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item">Attack: <strong>@card.Attack</strong></li>
+                        <li class="list-group-item">Armor: <strong>@card.Armor</strong></li>
+                    </ul>
+                </div>
+                <div class="flip-card-back">
+                    <img src="https://i.pinimg.com/originals/8a/10/8a/8a108a478f3f25158750cdedc4001370.png" style="width:100%">
+                    <div class="card-description">
+                        <a class="button btn btn-success" asp-controller="Store" asp-action="Buy" asp-route-cardName="@card.Name">Buy (@card.Price coins)</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
 </div>
-

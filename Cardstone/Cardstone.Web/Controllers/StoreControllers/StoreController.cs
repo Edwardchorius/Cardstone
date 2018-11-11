@@ -15,23 +15,37 @@ namespace Cardstone.Web.Controllers.StoreControllers
     {
         private readonly UserManager<Player> _userManager;
         private readonly ICardService _cardService;
+        private readonly IPurchaseService _purchaseService;
 
-        public StoreController(UserManager<Player> userManager, ICardService cardService)
+        public StoreController(UserManager<Player> userManager,
+                               ICardService cardService,
+                               IPurchaseService purchaseService)
         {
             this._userManager = userManager;
             this._cardService = cardService;
+            this._purchaseService = purchaseService;
         }
 
         [HttpGet]
         [Authorize]
         public IActionResult Store(StoreViewModel model)
         {
-            var currentUser = HttpContext.User.Identity.Name;
-            var cards = this._cardService.GetStoreCards(currentUser);
+            var singedUser = HttpContext.User.Identity.Name;
+            var cards = this._cardService.GetStoreCards(singedUser);
 
             model.Cards = cards;
 
             return View(model);
+        }
+
+        [HttpGet]
+        [Authorize]
+        public IActionResult Buy(string cardName)
+        {
+            var singedUser = HttpContext.User.Identity.Name;
+            _purchaseService.PurchaseCard(singedUser, cardName);
+
+            return this.RedirectToAction("Deck", "Game");
         }
     }
 }
