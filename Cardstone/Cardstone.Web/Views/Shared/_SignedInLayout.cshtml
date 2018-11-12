@@ -21,7 +21,7 @@
         <div class="container">
             <div class="navbar-header">
                 <a asp-area="" asp-controller="Home" asp-action="Index">
-                    <span> <img id="cardstone-logo" src="https://i.pinimg.com/originals/ff/75/86/ff7586e945387adcd71f94fadbc87a13.png" alt="Logo" /></span>
+                    <span><img class="navbar-icon" src="https://i.pinimg.com/originals/ff/75/86/ff7586e945387adcd71f94fadbc87a13.png" alt="Logo" /></span>
                 </a>
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
                     <span class="sr-only">Toggle navigation</span>
@@ -36,9 +36,8 @@
                     <li><a asp-area="" asp-controller="Game" asp-action="Deck">Deck</a></li>
                     <li><a asp-area="" asp-controller="Store" asp-action="Store">Store</a></li>
                     <li><a asp-area="" asp-controller="Game" asp-action="Leaderboard">Leaderboard</a></li>
-                    <li><a asp-area="" asp-controller="Game" asp-action="Settings">Settings</a></li>
                 </ul>
-                <partial name="_LoginPartial" />
+                <partial name="_LoginPartial"/>
             </div>
         </div>
     </nav>
