@@ -51,12 +51,12 @@ namespace Cardstone.Services
             return player;
         }
 
-        public Player GetPlayer(string playerId)
+        public Player GetPlayer(string username)
         {
-            if (playerId == null)
+            if (username == null)
                 throw new ArgumentNullException("Username cannot be null");
 
-            Player player = this._context.Players.FirstOrDefault(n => n.UserName == playerId);
+            Player player = this._context.Players.FirstOrDefault(n => n.UserName == username);
 
             if (player == null)
                 throw new PlayerDoesNotExistException("There is no such username in database");
