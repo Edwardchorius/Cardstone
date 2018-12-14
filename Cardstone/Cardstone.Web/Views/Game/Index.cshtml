@@ -1,6 +1,6 @@
 ﻿@model IEnumerable<PlayerViewModel>
 
-@{ 
+@{
     Layout = "~/Views/Shared/_SignedInLayout.cshtml";
 }
 
@@ -20,7 +20,7 @@
     @foreach (var player in Model)
     {
         <tr>
-            <td><img class="mini-avatar" src="@player.AvatarURL"/></td>
+            <td><img class="mini-avatar" src="@player.AvatarURL" /></td>
             <td>@player.Username</td>
             <td>@player.XP</td>
             <td><button class="btn btn-success" type="button" asp-area="" asp-controller="Game" asp-action="Battle">Battle!</button></td>

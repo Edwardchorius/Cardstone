@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Cardstone.Data.Exceptions;
 using Cardstone.Data.Models;
 using Cardstone.Services.Contracts;
 using Cardstone.Web.Models.StoreViewModels;
@@ -43,7 +44,15 @@ namespace Cardstone.Web.Controllers.StoreControllers
         public IActionResult Buy(string cardName)
         {
             var singedUser = HttpContext.User.Identity.Name;
-            _purchaseService.PurchaseCard(singedUser, cardName);
+            try
+            {
+                _purchaseService.PurchaseCard(singedUser, cardName);
+            }
+            catch (NotEnoughCoinsException ex)
+            {
+                return PartialView("_PartialModal", ex.Message);
+            }
+            
 
             return this.RedirectToAction("Deck", "Game");
         }

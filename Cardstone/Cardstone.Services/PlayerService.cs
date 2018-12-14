@@ -35,7 +35,7 @@ namespace Cardstone.Services
                 AvatarImageName = avatarUrl,
                 Health = 100,
                 XP = 0,
-                Coins = 150,
+                Coins = 1000,
                 Level = 1,
                 PlayersCards = new List<PlayersCards>(),
                 WonCombats = new List<Combat>(),
